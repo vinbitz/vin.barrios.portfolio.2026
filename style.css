@@ -3183,11 +3183,28 @@ body.dark-mode .modal-close:hover { color: #FFFFFF; }
 .logo-ecloud { background: #2563EB; }
 .logo-elevate { background: #10B981; }
 .logo-samsung { background: #000000; }
+.logo-cheil { background: #000000; }
+.logo-sipscale { background: #D97706; }
+.logo-buildclub { background: #4F46E5; }
+.logo-pupcouncil { background: #881337; }
+.logo-dole { background: #0369A1; }
+.logo-vinbitz { background: linear-gradient(135deg, #EC4899, #8B5CF6); }
 .logo-aws { background: #FF9900; color: #111; }
 .logo-enovators { background: #8C52FF; }
 .logo-campusconnect { background: #B91C1C; }
 .logo-aiplay { background: #0891B2; }
 .logo-jjt { background: linear-gradient(135deg, #7C3AED, #EC4899); }
+
+.exp-summary {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  margin-top: 6px;
+  line-height: 1.5;
+}
+
+body.dark-mode .exp-summary {
+  color: #94A3B8;
+}
 
 .exp-details h4 {
   font-size: 1.25rem;
