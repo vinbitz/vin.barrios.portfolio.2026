@@ -568,10 +568,33 @@ document.addEventListener('DOMContentLoaded', () => {
     const claimedCode = localStorage.getItem('marvin_samsung_claimed_code');
     const claimedEmail = localStorage.getItem('marvin_samsung_claimed_email');
 
-    const updateRemainingDisplay = () => {
+    const SPREADSHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/1jBXnXNKh64a_uGo7fcbCbU72CJt-0Uj7GM6PV4bLyxM/export?format=csv';
+    let liveClaimedCount = claimedCode ? 1 : 0;
+
+    const updateRemainingDisplay = async () => {
       if (!vouchersRemainingCount) return;
-      const claimedOffset = claimedCode ? 1 : 0;
-      const remaining = Math.max(0, TOTAL_VOUCHERS - claimedOffset);
+      try {
+        const res = await fetch(SPREADSHEET_CSV_URL, { cache: 'no-store' });
+        if (res.ok) {
+          const csvText = await res.text();
+          const rows = csvText.split('\n').filter(r => r.trim().length > 0);
+          let sheetClaims = 0;
+          if (rows.length > 1001) {
+            sheetClaims += (rows.length - 1001);
+          }
+          // Also count inline emails in col B for rows 2 to 1001
+          for (let i = 1; i < Math.min(rows.length, 1001); i++) {
+            const cols = rows[i].split(',');
+            if (cols[1] && cols[1].trim()) {
+              sheetClaims++;
+            }
+          }
+          liveClaimedCount = Math.max(liveClaimedCount, sheetClaims);
+        }
+      } catch (err) {
+        console.log('Live count fetch fallback:', err);
+      }
+      const remaining = Math.max(0, TOTAL_VOUCHERS - liveClaimedCount);
       vouchersRemainingCount.textContent = remaining;
     };
 
@@ -695,6 +718,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }
 
+      liveClaimedCount++;
       updateRemainingDisplay();
 
       // Attempt automatic copy to clipboard

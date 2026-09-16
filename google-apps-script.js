@@ -6,8 +6,9 @@
  * WHAT THIS SCRIPT DOES:
  * 1. Matches the voucher code in Column C ("Voucher Code") and fills in
  *    Column A ("Timestamp") and Column B ("Email") directly on that code's row!
- * 2. Also logs every claim into a clean, dedicated "Claimed Leads" tab so
+ * 2. Also logs every claim into a clean, dedicated "Claims Log" tab so
  *    you can see all your emails right at the top without scrolling through 1,000 rows.
+ * 3. Provides live voucher counts via doGet so your website counter updates dynamically!
  */
 
 function doPost(e) {
@@ -38,7 +39,7 @@ function doPost(e) {
     if (code && mainSheet.getLastRow() > 1) {
       var lastRow = mainSheet.getLastRow();
       // Read Column C values
-      var codeValues = mainSheet.getRange(2, 3, lastRow - 1, 1).getValues();
+      var codeValues = mainSheet.getRange(2, 3, Math.min(lastRow - 1, 1000), 1).getValues();
       for (var i = 0; i < codeValues.length; i++) {
         if (codeValues[i][0] && codeValues[i][0].toString().trim() === code) {
           matchedRow = i + 2; // offset for 1-based index and header
@@ -85,5 +86,43 @@ function doPost(e) {
 }
 
 function doGet(e) {
-  return ContentService.createTextOutput("Voucher Lead Webhook is running active and healthy.");
+  try {
+    var ss = SpreadsheetApp.getActiveSpreadsheet();
+    var mainSheet = ss.getSheetByName("Sheet1") || ss.getSheets()[0];
+    var lastRow = mainSheet.getLastRow();
+    
+    // Count legacy claims appended below row 1001
+    var legacyClaims = Math.max(0, lastRow - 1001);
+    
+    // Count inline claims where Col B has an email
+    var inlineClaims = 0;
+    if (lastRow > 1) {
+      var checkRows = Math.min(lastRow - 1, 1000);
+      var emails = mainSheet.getRange(2, 2, checkRows, 1).getValues();
+      for (var i = 0; i < emails.length; i++) {
+        if (emails[i][0] && emails[i][0].toString().trim() !== '') {
+          inlineClaims++;
+        }
+      }
+    }
+
+    var logSheet = ss.getSheetByName("Claims Log");
+    var logClaims = logSheet ? Math.max(0, logSheet.getLastRow() - 1) : 0;
+
+    var totalClaimed = Math.max(legacyClaims + inlineClaims, logClaims);
+    var totalCodes = 1000;
+    var remaining = Math.max(0, totalCodes - totalClaimed);
+
+    return ContentService.createTextOutput(JSON.stringify({
+      status: "success",
+      totalClaimed: totalClaimed,
+      remaining: remaining
+    })).setMimeType(ContentService.MimeType.JSON);
+  } catch (err) {
+    return ContentService.createTextOutput(JSON.stringify({
+      status: "error",
+      remaining: 993,
+      message: err.toString()
+    })).setMimeType(ContentService.MimeType.JSON);
+  }
 }
