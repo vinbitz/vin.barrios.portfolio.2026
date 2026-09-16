@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#141722"/>
+      <stop offset="100%" stop-color="#080A0F"/>
+    </linearGradient>
+    <linearGradient id="starGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFE57F"/>
+      <stop offset="45%" stop-color="#FFC107"/>
+      <stop offset="100%" stop-color="#FF8F00"/>
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="16" flood-color="#FFB300" flood-opacity="0.45"/>
+    </filter>
+  </defs>
+
+  <!-- Modern dark squircle container with subtle glowing rim -->
+  <rect x="16" y="16" width="480" height="480" rx="120" fill="url(#bgGrad)"/>
+  <rect x="16" y="16" width="480" height="480" rx="120" fill="none" stroke="rgba(255,255,255,0.14)" stroke-width="8"/>
+
+  <!-- Radiant Golden Star -->
+  <polygon points="256,76 306,197 437,207 337,292 368,420 256,351 144,420 175,292 75,207 206,197"
+    fill="url(#starGrad)"
+    stroke="#FFE57F"
+    stroke-width="14"
+    stroke-linejoin="round"
+    filter="url(#glow)"/>
+
+  <!-- Subtle Center Shimmer Accent -->
+  <polygon points="256,120 286,210 376,218 306,276 328,366 256,318 184,366 206,276 136,218 226,210"
+    fill="rgba(255,255,255,0.18)"/>
+</svg>
