@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="maroonGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#800000" />
+      <stop offset="50%" stop-color="#6B0A1A" />
+      <stop offset="100%" stop-color="#4A0510" />
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FDE047" />
+      <stop offset="50%" stop-color="#EAB308" />
+      <stop offset="100%" stop-color="#CA8A04" />
+    </linearGradient>
+    <filter id="badgeShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+
+  <!-- Outer Ring -->
+  <circle cx="256" cy="256" r="240" fill="url(#maroonGrad)" stroke="url(#goldGrad)" stroke-width="12" filter="url(#badgeShadow)" />
+  <circle cx="256" cy="256" r="218" fill="none" stroke="url(#goldGrad)" stroke-width="3" stroke-dasharray="6,4" />
+
+  <!-- Inner Background -->
+  <circle cx="256" cy="256" r="185" fill="#42060D" stroke="url(#goldGrad)" stroke-width="4" />
+
+  <!-- Central Tech Shield -->
+  <path d="M 256 120 L 330 155 L 330 250 C 330 305 295 345 256 365 C 217 345 182 305 182 250 L 182 155 Z" fill="url(#goldGrad)" opacity="0.15" />
+  <path d="M 256 125 L 325 158 L 325 248 C 325 300 292 338 256 358 C 220 338 187 300 187 248 L 187 158 Z" fill="none" stroke="url(#goldGrad)" stroke-width="4" />
+
+  <!-- Microchip / Circuit Nodes in Center -->
+  <rect x="226" y="196" width="60" height="60" rx="8" fill="url(#goldGrad)" />
+  <rect x="236" y="206" width="40" height="40" rx="4" fill="#42060D" />
+  <path d="M 210 216 L 226 216 M 210 236 L 226 236 M 286 216 L 302 216 M 286 236 L 302 236 M 236 180 L 236 196 M 256 180 L 256 196 M 276 180 L 276 196 M 236 256 L 236 272 M 256 256 L 256 272 M 276 256 L 276 272" stroke="url(#goldGrad)" stroke-width="4" stroke-linecap="round" />
+
+  <!-- Star Emblem -->
+  <polygon points="256,140 260,152 272,152 262,159 266,171 256,164 246,171 250,159 240,152 252,152" fill="url(#goldGrad)" />
+
+  <!-- CCIS Text -->
+  <text x="256" y="325" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="34" font-weight="900" fill="#FFFFFF" text-anchor="middle" letter-spacing="4">CCIS</text>
+  <text x="256" y="348" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="800" fill="url(#goldGrad)" text-anchor="middle" letter-spacing="3">STUDENT COUNCIL</text>
+
+  <!-- Top / Bottom Text in Arch -->
+  <path id="topTextArc" d="M 90 256 A 166 166 0 0 1 422 256" fill="none" />
+  <text font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="19" font-weight="800" fill="#FEE2E2" letter-spacing="4">
+    <textPath href="#topTextArc" startOffset="50%" text-anchor="middle">POLYTECHNIC UNIVERSITY</textPath>
+  </text>
+
+  <path id="botTextArc" d="M 422 256 A 166 166 0 0 1 90 256" fill="none" />
+  <text font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="19" font-weight="800" fill="#FEE2E2" letter-spacing="4">
+    <textPath href="#botTextArc" startOffset="50%" text-anchor="middle">OF THE PHILIPPINES</textPath>
+  </text>
+</svg>

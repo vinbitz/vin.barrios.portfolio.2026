@@ -1430,8 +1430,10 @@ body.dark-mode .experience-row h4 { color: #FFFFFF; }
 body.dark-mode .exp-company { color: #CBD5E1; }
 body.dark-mode .exp-company a { color: #C084FC !important; }
 body.dark-mode .exp-right { color: #38BDF8; font-weight: 600; }
-body.dark-mode .exp-logo-badge { border-color: rgba(255, 255, 255, 0.2); }
-body.dark-mode .exp-logo-badge.logo-aws { background: #FF9900; color: #000000; font-weight: 900; }
+body.dark-mode .exp-logo-badge { 
+  border-color: rgba(255, 255, 255, 0.18); 
+  box-shadow: 2px 3px 0px rgba(0, 0, 0, 0.8);
+}
 body.dark-mode .team-photo-banner {
   background: #0D111A;
   border: 1.5px solid rgba(140, 82, 255, 0.4);
@@ -3165,9 +3167,9 @@ body.dark-mode .modal-close:hover { color: #FFFFFF; }
 }
 
 .exp-logo-badge {
-  width: 52px;
-  height: 52px;
-  border-radius: var(--radius-sm);
+  width: 54px;
+  height: 54px;
+  border-radius: 14px;
   border: 1.5px solid var(--border-dark);
   display: flex;
   align-items: center;
@@ -3176,24 +3178,51 @@ body.dark-mode .modal-close:hover { color: #FFFFFF; }
   font-size: 0.85rem;
   color: #FFFFFF;
   flex-shrink: 0;
+  background: #FFFFFF;
+  overflow: hidden;
+  box-shadow: 2px 3px 0px rgba(18, 19, 22, 0.2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.experience-row:hover .exp-logo-badge {
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 3px 5px 0px rgba(18, 19, 22, 0.3);
+}
+
+.exp-badge-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.exp-badge-img.fit-contain {
+  object-fit: contain;
+  padding: 4px;
+}
+
+.exp-badge-img.fit-contain-sm {
+  object-fit: contain;
+  padding: 6px;
 }
 
 .logo-ibex { background: #18181B; }
 .logo-costify { background: #FF5A1F; }
-.logo-ecloud { background: #2563EB; }
-.logo-elevate { background: #10B981; }
+.logo-ecloud { background: #FFFFFF; }
+.logo-elevate { background: #FFFFFF; }
 .logo-samsung { background: #000000; }
 .logo-cheil { background: #000000; }
-.logo-sipscale { background: #D97706; }
-.logo-buildclub { background: #4F46E5; }
-.logo-pupcouncil { background: #881337; }
-.logo-dole { background: #0369A1; }
+.logo-sipscale { background: #0D111A; }
+.logo-buildclub { background: #0F172A; }
+.logo-pupcouncil { background: #42060D; }
+.logo-dole { background: #FFFFFF; }
 .logo-vinbitz { background: linear-gradient(135deg, #EC4899, #8B5CF6); }
-.logo-aws { background: #FF9900; color: #111; }
-.logo-enovators { background: #8C52FF; }
-.logo-campusconnect { background: #B91C1C; }
-.logo-aiplay { background: #0891B2; }
-.logo-jjt { background: linear-gradient(135deg, #7C3AED, #EC4899); }
+.logo-aws { background: #1B1035; color: #111; }
+.logo-enovators { background: #0D111A; }
+.logo-campusconnect { background: #FFFFFF; }
+.logo-aiplay { background: #081225; }
+.logo-jjt { background: #FFFFFF; }
+.logo-upwork { background: #14A800; }
 
 .exp-summary {
   font-size: 0.88rem;
