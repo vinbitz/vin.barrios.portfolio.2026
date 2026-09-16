@@ -3784,9 +3784,9 @@ body.dark-mode .as-seen-on-section {
 }
 
 .ticker-logo-img {
-  max-height: 42px;
+  max-height: 44px;
   width: auto;
-  max-width: 160px;
+  max-width: 195px;
   object-fit: contain;
   display: block;
 }
