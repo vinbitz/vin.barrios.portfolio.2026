@@ -434,6 +434,35 @@ document.addEventListener('DOMContentLoaded', () => {
           </a>
         </div>
       `
+    },
+    'case-study-updating': {
+      title: 'Case Study & Full Deck',
+      subtitle: 'Project Documentation · Currently Being Updated',
+      body: `
+        <div style="text-align: center; padding: 14px 6px 6px;">
+          <div style="font-size: 2.8rem; margin-bottom: 16px;">📊 🚀</div>
+          <h4 style="font-size: 1.25rem; font-weight: 800; margin-bottom: 12px; color: #ffffff;">
+            Case Study &amp; Campaign Deck In Progress
+          </h4>
+          <p style="color: #cbd5e1; line-height: 1.65; margin-bottom: 24px; font-size: 0.95rem; max-width: 520px; margin-left: auto; margin-right: auto;">
+            I am currently compiling and finalizing the full metrics breakdown, verified conversion funnels, sprint deliverables, and architecture blueprints for this project. The complete documentation will be published shortly!
+          </p>
+          <div style="background: rgba(140, 82, 255, 0.12); border: 1px dashed rgba(140, 82, 255, 0.45); border-radius: 12px; padding: 16px 20px; margin-bottom: 24px;">
+            <p style="font-size: 0.92rem; color: #f1f5f9; margin: 0; line-height: 1.5;">
+              💡 <strong>Need an early preview or looking to collaborate?</strong><br>
+              Feel free to message me directly on LinkedIn or reach out via email.
+            </p>
+          </div>
+          <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
+            <a href="https://www.linkedin.com/in/marvinbarrios/" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="font-size: 0.92rem; padding: 11px 24px;">
+              Message Marvin on LinkedIn ↗
+            </a>
+            <a href="mailto:contact.vinbarrios@gmail.com" class="btn btn-outline" style="font-size: 0.92rem; padding: 11px 24px; border-color: rgba(255,255,255,0.3); color: #ffffff;">
+              Send Direct Email
+            </a>
+          </div>
+        </div>
+      `
     }
   };
 
@@ -691,14 +720,20 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Smooth scroll handler for "See My Work" and all #work links
+  // Smooth scroll handler for "See My Work" and all #work links: always transition to Executive Mode
   document.querySelectorAll('a[href="#work"]').forEach(link => {
     link.addEventListener('click', (e) => {
       e.preventDefault();
-      const workSec = document.getElementById('work');
-      if (workSec) {
-        workSec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      // Always put to Executive Mode
+      if (typeof setPortfolioMode === 'function') {
+        setPortfolioMode(true);
       }
+      setTimeout(() => {
+        const workSec = document.getElementById('work');
+        if (workSec) {
+          workSec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 180);
     });
   });
 
