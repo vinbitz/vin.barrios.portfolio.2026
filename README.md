@@ -1,4 +1,4 @@
-﻿# Marvin Barrios — Tech Marketer & Growth Strategist Portfolio (2026)
+# Marvin Barrios — Tech Marketer & Growth Strategist Portfolio (2026)
 
 > **Live Local Development**: Runs on `http://localhost:3000`  
 > **Repository**: [vinbitz/vin.barrios.portfolio.2026](https://github.com/vinbitz/vin.barrios.portfolio.2026)  
@@ -59,5 +59,6 @@ Open **[http://localhost:3000](http://localhost:3000)** in your browser.
 
 ## 📬 Contact
 
-- **Email**: [marvinbarrios.tech@gmail.com](mailto:marvinbarrios.tech@gmail.com)
+- **Email**: [contact.vinbarrios@gmail.com](mailto:contact.vinbarrios@gmail.com)
+- **Phone**: [+63 924 144 7635](tel:+639241447635)
 - **LinkedIn**: [linkedin.com/in/marvinbarrios](https://www.linkedin.com/in/marvinbarrios/)
