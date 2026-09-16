@@ -1,0 +1,1700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marvin Barrios — Tech Marketer & Distribution Engine</title>
+  <meta name="description" content="Portfolio of Marvin Barrios: Tech Marketer, Viral Distribution Strategist, Samsung Galaxy Campus Ambassador, and Growth Engineer.">
+  
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+  
+  <!-- GSAP & ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="main.js" defer></script>
+</head>
+<body>
+
+  <!-- Clouted Blueprint Guidelines & Crosshair Markers -->
+  <div class="blueprint-guide-left" aria-hidden="true">
+    <div class="crosshair-dot" style="top: 80px;"></div>
+    <div class="crosshair-dot" style="top: 420px;"></div>
+    <div class="crosshair-dot" style="top: 860px;"></div>
+  </div>
+  <div class="blueprint-guide-right" aria-hidden="true">
+    <div class="crosshair-dot" style="top: 80px;"></div>
+    <div class="crosshair-dot" style="top: 420px;"></div>
+    <div class="crosshair-dot" style="top: 860px;"></div>
+  </div>
+
+  <!-- Clouted Floating Pill Header -->
+  <header class="clouted-header-wrapper">
+    <nav class="clouted-navbar">
+      <a href="#" class="clouted-brand">
+        vin<span class="dot">.</span>
+      </a>
+
+      <ul class="clouted-nav-links" id="navLinksList">
+        <!-- Creator Mode Nav Links (Active in Light Mode) -->
+        <li class="nav-item-creator"><a href="#as-seen-on" class="clouted-nav-link">Partners</a></li>
+        <li class="nav-item-creator"><a href="#videos" class="clouted-nav-link">Videos</a></li>
+        <li class="nav-item-creator"><a href="#vouchers" class="clouted-nav-link">Vouchers</a></li>
+        <li class="nav-item-creator"><a href="#samsung" class="clouted-nav-link">Samsung</a></li>
+        <li class="nav-item-creator"><a href="#samsung-articles" class="clouted-nav-link">Articles</a></li>
+
+        <!-- Executive Mode Nav Links (Active in Dark Glow Mode) -->
+        <li class="nav-item-executive"><a href="#work" class="clouted-nav-link">Our Work</a></li>
+        <li class="nav-item-executive"><a href="#branding" class="clouted-nav-link">Branding</a></li>
+        <li class="nav-item-executive"><a href="#approach" class="clouted-nav-link">Approach</a></li>
+        <li class="nav-item-executive"><a href="#experience" class="clouted-nav-link">Experience</a></li>
+        <li class="nav-item-executive"><a href="#skills" class="clouted-nav-link">Skills</a></li>
+        <li class="nav-item-executive"><a href="#recommendations" class="clouted-nav-link">Endorsements</a></li>
+      </ul>
+
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <button id="modeToggleBtn" class="clouted-mode-btn" type="button" title="Switch between Creator Mode and Executive Mode">
+          <span class="mode-btn-icon">🌙</span>
+          <span class="mode-btn-text">Executive Mode</span>
+        </button>
+        <a href="#contact" class="clouted-btn-contact">Get In Touch</a>
+        <button class="mobile-toggle" aria-label="Toggle Navigation Menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section class="hero-section" id="hero">
+      <!-- Moving Floating Collaborator Cursors Layer -->
+      <div class="floating-cursors-layer" aria-hidden="true">
+        <!-- Floating Cursor 1: Creativity (Canva Red) -->
+        <div class="floating-cursor cursor-drift-1" id="floatCursor1">
+          <svg width="22" height="22" viewBox="0 0 24 24" class="cursor-svg">
+            <path d="M3 2L19 12L11 14L8 21L3 2Z" fill="#EA3829" stroke="#FFFFFF" stroke-width="1.5" stroke-linejoin="round"/>
+          </svg>
+          <span class="cursor-nametag tag-red">
+            <span class="cursor-live-dot"></span> Creativity
+          </span>
+        </div>
+
+        <!-- Floating Cursor 2: Technology (Purple) -->
+        <div class="floating-cursor cursor-drift-2" id="floatCursor2">
+          <svg width="22" height="22" viewBox="0 0 24 24" class="cursor-svg">
+            <path d="M3 2L19 12L11 14L8 21L3 2Z" fill="#8C52FF" stroke="#FFFFFF" stroke-width="1.5" stroke-linejoin="round"/>
+          </svg>
+          <span class="cursor-nametag tag-purple">
+            <span class="cursor-live-dot"></span> Technology
+          </span>
+        </div>
+
+        <!-- Floating Cursor 3: Business (Blue) -->
+        <div class="floating-cursor cursor-drift-3" id="floatCursor3">
+          <svg width="22" height="22" viewBox="0 0 24 24" class="cursor-svg">
+            <path d="M3 2L19 12L11 14L8 21L3 2Z" fill="#109EF2" stroke="#FFFFFF" stroke-width="1.5" stroke-linejoin="round"/>
+          </svg>
+          <span class="cursor-nametag tag-blue">
+            <span class="cursor-live-dot"></span> Business
+          </span>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="hero-grid">
+          
+          <!-- Left: Hero Text with Moving Draggable Canva Boxes -->
+          <div class="hero-content">
+
+            <h1 class="hero-title">
+              Hi, I’m 
+              <!-- Canva Box for Marvin (Violet) -->
+              <span class="canva-drag-wrapper" id="dragMarvin" title="Click & drag me!">
+                <span class="canva-box canva-box-purple" id="boxMarvin">
+                  <span class="canva-handle-top"></span>
+                  <span class="canva-handle-line"></span>
+                  <span class="canva-handle handle-tl"></span>
+                  <span class="canva-handle handle-tr"></span>
+                  <span class="canva-handle handle-bl"></span>
+                  <span class="canva-handle handle-br"></span>
+                  <span class="text-purple">Marvin</span>
+                </span>
+              </span><br>
+              Barrios a Tech<br>
+              <!-- Canva Box for Marketer. (Blue) -->
+              <span class="canva-drag-wrapper" id="dragMarketer" title="Click & drag me!">
+                <span class="canva-box canva-box-blue" id="boxMarketer">
+                  <span class="canva-handle-top"></span>
+                  <span class="canva-handle-line"></span>
+                  <span class="canva-handle handle-tl"></span>
+                  <span class="canva-handle handle-tr"></span>
+                  <span class="canva-handle handle-bl"></span>
+                  <span class="canva-handle handle-br"></span>
+                  <span class="text-blue">Marketer.</span>
+                </span>
+              </span>
+            </h1>
+
+            <p class="hero-subtext">
+              The way tech stories spread has changed. The ones breaking through aren't louder — they're <strong>better distributed</strong>. I build meaningful projects, viral growth engines, and high-impact digital strategies for brands and startups.
+            </p>
+
+            <div class="hero-buttons">
+              <a href="#work" class="btn-swarm-wipe">See Our Work &rarr;</a>
+              <a href="#contact" class="btn btn-primary">Talk with me</a>
+              <a href="https://www.linkedin.com/in/marvinbarrios/" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+                Download CV
+              </a>
+            </div>
+          </div>
+
+          <!-- Right: Interactive 3D Flip Portrait (Click to Flip & Glow Dark Mode) -->
+          <div class="hero-portrait-wrapper">
+            <div class="flip-card-container" id="portraitFlipCard" title="Click to flip &amp; enter glow dark mode!">
+              <div class="flip-card-inner">
+                
+                <!-- FRONT FACE: Classic Light Mode with Denim Portrait -->
+                <div class="flip-card-face flip-card-front hud-card">
+                  <div class="hud-bracket hud-tl"></div>
+                  <div class="hud-bracket hud-tr"></div>
+                  <div class="hud-bracket hud-bl"></div>
+                  <div class="hud-bracket hud-br"></div>
+                  
+                  <div class="flip-card-media">
+                    <img src="assets/portrait.png" alt="Marvin Barrios — Tech Marketer" class="hero-portrait-img">
+                    <div class="flip-hint-pill">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/>
+                      </svg>
+                      Click to Flip
+                    </div>
+                  </div>
+
+                  <div class="portrait-stamp">My Portfolio</div>
+                </div>
+
+                <!-- BACK FACE: Cyberpunk Dark Mode & Glow in the Dark with Formal Suit -->
+                <div class="flip-card-face flip-card-back hud-card dark-glow-mode">
+                  <div class="hud-bracket hud-tl bracket-glow"></div>
+                  <div class="hud-bracket hud-tr bracket-glow"></div>
+                  <div class="hud-bracket hud-bl bracket-glow"></div>
+                  <div class="hud-bracket hud-br bracket-glow"></div>
+
+                  <div class="flip-card-media">
+                    <img src="assets/portrait-dark.jpg" alt="Marvin Barrios — Executive &amp; Strategist" class="hero-portrait-img dark-img">
+                    
+                    <!-- Glow in the dark aurora overlay -->
+                    <div class="glow-aurora-overlay" aria-hidden="true"></div>
+
+                    <!-- Flip back button -->
+                    <div class="flip-hint-pill flip-back-pill" title="Click to return to Light Mode">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M2.5 2v6h6M2.66 15.57a10 10 0 0 0 .57-8.38L-2.44 1.52"/>
+                      </svg>
+                      Click to Flip
+                    </div>
+
+                    <!-- Executive Badge Overlay -->
+                    <div class="back-card-executive-hud">
+                      <div class="exec-hud-tag">★ GLOW DARK MODE ACTIVE</div>
+                      <div class="exec-hud-title">Marvin Barrios</div>
+                      <div class="exec-hud-sub">Tech Marketer &amp; Growth Strategist</div>
+                    </div>
+                  </div>
+
+                  <div class="portrait-stamp stamp-dark-glow">✦ Executive &amp; Strategist ✦</div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- AS SEEN ON / MOVING LOGOS TICKER (CREATOR MODE) -->
+    <section class="as-seen-on-section creator-only-section" id="as-seen-on">
+      <div class="container">
+        <p class="as-seen-on-label">AS SEEN ON · TRUSTED BY INNOVATORS &amp; TECH HUBS</p>
+      </div>
+      <div class="logos-ticker-wrapper" aria-hidden="true">
+        <div class="logos-ticker-track">
+          <!-- Logo 1: Samsung -->
+          <div class="ticker-item">
+            <span class="ticker-logo-badge logo-samsung">
+              <span class="ticker-logo-text">SAMSUNG</span>
+              <span class="ticker-logo-sub">Galaxy Campus</span>
+            </span>
+          </div>
+          <!-- Logo 2: AWS -->
+          <div class="ticker-item">
+            <span class="ticker-logo-badge logo-aws">
+              <span class="ticker-logo-text">AWS</span>
+              <span class="ticker-logo-sub">Cloud Clubs</span>
+            </span>
+          </div>
+          <!-- Logo 3: DOST PUP TBI -->
+          <div class="ticker-item">
+            <span class="ticker-logo-badge logo-dost">
+              <span class="ticker-logo-text">DOST · PUP TBI</span>
+              <span class="ticker-logo-sub">Startup Incubator</span>
+            </span>
+          </div>
+          <!-- Logo 4: Costify -->
+          <div class="ticker-item">
+            <span class="ticker-logo-badge logo-costify">
+              <span class="ticker-logo-text">COSTIFY</span>
+              <span class="ticker-logo-sub">Campus E-Commerce</span>
+            </span>
+          </div>
+          <!-- Logo 5: e:Novators -->
+          <div class="ticker-item">
+            <span class="ticker-logo-badge logo-enovators">
+              <span class="ticker-logo-text">e:Novators</span>
+              <span class="ticker-logo-sub">Tech Founders</span>
+            </span>
+          </div>
+          <!-- Logo 6: PUP Campus Connect -->
+          <div class="ticker-item">
+            <span class="ticker-logo-badge logo-pup">
+              <span class="ticker-logo-text">PUP CAMPUS</span>
+              <span class="ticker-logo-sub">Connect Hub</span>
+            </span>
+          </div>
+          <!-- Logo 7: AI Playgrounds -->
+          <div class="ticker-item">
+            <span class="ticker-logo-badge logo-ai">
+              <span class="ticker-logo-text">AI PLAYGROUNDS</span>
+              <span class="ticker-logo-sub">GenAI Community</span>
+            </span>
+          </div>
+          <!-- Logo 8: JJT Digital -->
+          <div class="ticker-item">
+            <span class="ticker-logo-badge logo-jjt">
+              <span class="ticker-logo-text">JJT DIGITAL</span>
+              <span class="ticker-logo-sub">Innovative Agency</span>
+            </span>
+          </div>
+
+          <!-- Duplicate items for smooth infinite loop -->
+          <div class="ticker-item">
+            <span class="ticker-logo-badge logo-samsung">
+              <span class="ticker-logo-text">SAMSUNG</span>
+              <span class="ticker-logo-sub">Galaxy Campus</span>
+            </span>
+          </div>
+          <div class="ticker-item">
+            <span class="ticker-logo-badge logo-aws">
+              <span class="ticker-logo-text">AWS</span>
+              <span class="ticker-logo-sub">Cloud Clubs</span>
+            </span>
+          </div>
+          <div class="ticker-item">
+            <span class="ticker-logo-badge logo-dost">
+              <span class="ticker-logo-text">DOST · PUP TBI</span>
+              <span class="ticker-logo-sub">Startup Incubator</span>
+            </span>
+          </div>
+          <div class="ticker-item">
+            <span class="ticker-logo-badge logo-costify">
+              <span class="ticker-logo-text">COSTIFY</span>
+              <span class="ticker-logo-sub">Campus E-Commerce</span>
+            </span>
+          </div>
+          <div class="ticker-item">
+            <span class="ticker-logo-badge logo-enovators">
+              <span class="ticker-logo-text">e:Novators</span>
+              <span class="ticker-logo-sub">Tech Founders</span>
+            </span>
+          </div>
+          <div class="ticker-item">
+            <span class="ticker-logo-badge logo-pup">
+              <span class="ticker-logo-text">PUP CAMPUS</span>
+              <span class="ticker-logo-sub">Connect Hub</span>
+            </span>
+          </div>
+          <div class="ticker-item">
+            <span class="ticker-logo-badge logo-ai">
+              <span class="ticker-logo-text">AI PLAYGROUNDS</span>
+              <span class="ticker-logo-sub">GenAI Community</span>
+            </span>
+          </div>
+          <div class="ticker-item">
+            <span class="ticker-logo-badge logo-jjt">
+              <span class="ticker-logo-text">JJT DIGITAL</span>
+              <span class="ticker-logo-sub">Innovative Agency</span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIDEOS & VLOGS SECTION ("I review", "I run", "I work") -->
+    <section class="videos-section creator-only-section" id="videos">
+      <div class="container">
+        
+        <div class="wireframe-badge">
+          Visual Media &amp; Vlogs
+          <svg viewBox="0 0 100 100" class="boom-sticker" aria-hidden="true">
+            <polygon points="50,0 58,28 84,6 74,34 100,28 80,50 98,72 73,66 84,94 58,73 50,100 42,73 16,94 27,66 2,72 20,50 0,28 26,34 16,6 42,28" fill="#EA3829" />
+          </svg>
+        </div>
+        <h2 class="section-headline">Videos, Vlogs &amp; Reviews</h2>
+        <p style="color: var(--text-muted); max-width: 680px; font-size: 1.05rem;">
+          From flagship tech reviews to marathon fitness vlogs and day-in-the-life tech internships. Click any card to watch live in-page or open directly on YouTube.
+        </p>
+
+        <div class="videos-grid">
+          
+          <!-- Video 1: Review -->
+          <div class="video-card" data-open-modal="video-review">
+            <div class="video-thumb-wrapper">
+              <img src="https://img.youtube.com/vi/3FxIm-m1eGE/hqdefault.jpg" alt="Galaxy S26 Ultra Review" class="video-thumb-img" loading="lazy">
+              <div class="video-thumb-overlay"></div>
+              <span class="video-platform-pill platform-review">I REVIEW</span>
+              <div class="video-play-btn">▶</div>
+              <span class="video-duration-pill">S26 ULTRA</span>
+            </div>
+            <div class="video-body">
+              <h3 class="video-title">I Tried the Galaxy S26 Ultra… Here’s What Surprised Me</h3>
+              <p class="video-desc">Hands-on impressions with the Galaxy S26 Ultra: testing Galaxy AI capabilities, camera optics, and creator performance.</p>
+              <div class="video-action-row">
+                <span class="video-link-cta">Watch Video ▶</span>
+                <a href="https://youtu.be/3FxIm-m1eGE" target="_blank" rel="noopener noreferrer" class="btn-yt-direct" onclick="event.stopPropagation();">YouTube ↗</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Video 2: Run -->
+          <div class="video-card" data-open-modal="video-run">
+            <div class="video-thumb-wrapper">
+              <img src="https://img.youtube.com/vi/CdPMPd-swMI/hqdefault.jpg" alt="How I Started Running" class="video-thumb-img" loading="lazy">
+              <div class="video-thumb-overlay"></div>
+              <span class="video-platform-pill platform-run">I RUN</span>
+              <div class="video-play-btn">▶</div>
+              <span class="video-duration-pill">MARATHON</span>
+            </div>
+            <div class="video-body">
+              <h3 class="video-title">How I Started Running + Galaxy Manila Marathon 2026 Giveaway</h3>
+              <p class="video-desc">Documenting my fitness journey, marathon training routines with Galaxy Watch, and a community race giveaway.</p>
+              <div class="video-action-row">
+                <span class="video-link-cta">Watch Video ▶</span>
+                <a href="https://youtu.be/CdPMPd-swMI" target="_blank" rel="noopener noreferrer" class="btn-yt-direct" onclick="event.stopPropagation();">YouTube ↗</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Video 3: Work -->
+          <div class="video-card" data-open-modal="video-work">
+            <div class="video-thumb-wrapper">
+              <img src="https://img.youtube.com/vi/1_ACqtRjlvc/hqdefault.jpg" alt="Cloud Intern in BGC" class="video-thumb-img" loading="lazy">
+              <div class="video-thumb-overlay"></div>
+              <span class="video-platform-pill platform-work">I WORK</span>
+              <div class="video-play-btn">▶</div>
+              <span class="video-duration-pill">BGC VLOG</span>
+            </div>
+            <div class="video-body">
+              <h3 class="video-title">My First Week as a Cloud Intern in BGC, Taguig!</h3>
+              <p class="video-desc">A realistic day-in-the-life vlog navigating my first week as a tech intern in BGC alongside university projects.</p>
+              <div class="video-action-row">
+                <span class="video-link-cta">Watch Video ▶</span>
+                <a href="https://youtu.be/1_ACqtRjlvc" target="_blank" rel="noopener noreferrer" class="btn-yt-direct" onclick="event.stopPropagation();">YouTube ↗</a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Social Handles -->
+        <div class="video-channels-strip">
+          <a href="https://www.youtube.com/@marvinbarrios" target="_blank" rel="noopener noreferrer" class="channel-pill">
+            <span style="color: #FF0000; font-size: 1.1rem;">▶</span> YouTube Channel
+          </a>
+          <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" class="channel-pill">
+            <span style="color: #E1306C; font-size: 1.1rem;">📷</span> Instagram Reels
+          </a>
+          <a href="https://www.tiktok.com" target="_blank" rel="noopener noreferrer" class="channel-pill">
+            <span style="color: #000; font-size: 1.1rem;">♫</span> TikTok Creator
+          </a>
+          <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" class="channel-pill">
+            <span style="color: #1877F2; font-size: 1.1rem;">f</span> Facebook Page
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- VOUCHERS & PERKS SECTION -->
+    <section class="vouchers-section creator-only-section" id="vouchers">
+      <div class="container">
+        
+        <div class="wireframe-badge">Perks &amp; Vouchers</div>
+        <h2 class="section-headline">Exclusive Vouchers &amp; Discounts</h2>
+        <p style="color: var(--text-muted); max-width: 650px; font-size: 1.05rem;">
+          Special promotional codes and student perks from brand partners at Samsung, AWS, and Costify. Click <strong>Copy Code</strong> to redeem during checkout or registration.
+        </p>
+
+        <div class="vouchers-grid">
+          
+          <!-- Voucher 1 -->
+          <div class="voucher-card">
+            <div class="voucher-top">
+              <span class="voucher-badge voucher-badge-samsung">Samsung Campus Partner</span>
+              <div class="voucher-discount">15% OFF</div>
+              <h3 class="voucher-title">Galaxy Campus Student Deal</h3>
+              <p class="voucher-desc">Get 15% off Galaxy S &amp; A series smartphones, Galaxy Tabs, and accessories via Samsung Education Store.</p>
+            </div>
+            <div class="voucher-bottom">
+              <div class="voucher-code-box">
+                <span>GALAXY-CAMPUS15</span>
+              </div>
+              <button class="btn-copy-code" data-code="GALAXY-CAMPUS15">Copy Code</button>
+            </div>
+          </div>
+
+          <!-- Voucher 2 -->
+          <div class="voucher-card">
+            <div class="voucher-top">
+              <span class="voucher-badge voucher-badge-aws">AWS Cloud Club</span>
+              <div class="voucher-discount">$100</div>
+              <h3 class="voucher-title">AWS Builder Cloud Credits</h3>
+              <p class="voucher-desc">Redeem $100 in AWS promotional credits for learning, cloud certification labs, and hackathon project prototyping.</p>
+            </div>
+            <div class="voucher-bottom">
+              <div class="voucher-code-box">
+                <span>AWS-PUP-CRED100</span>
+              </div>
+              <button class="btn-copy-code" data-code="AWS-PUP-CRED100">Copy Code</button>
+            </div>
+          </div>
+
+          <!-- Voucher 3 -->
+          <div class="voucher-card">
+            <div class="voucher-top">
+              <span class="voucher-badge voucher-badge-costify">Costify · DOST PUP TBI</span>
+              <div class="voucher-discount">25% OFF</div>
+              <h3 class="voucher-title">Costify Creator Pass</h3>
+              <p class="voucher-desc">Enjoy 25% off Costify's Pro Analytics &amp; Ecommerce tracking tools for emerging campus and creator businesses.</p>
+            </div>
+            <div class="voucher-bottom">
+              <div class="voucher-code-box">
+                <span>COSTIFY-VIP25</span>
+              </div>
+              <button class="btn-copy-code" data-code="COSTIFY-VIP25">Copy Code</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SAMSUNG GALAXY CAMPUS AMBASSADOR (CAMPAIGN REELS & SHOWCASE) -->
+    <section class="samsung-section creator-only-section" id="samsung">
+      <div class="container">
+        <div class="wireframe-badge">Samsung SEA&amp;O Partner</div>
+        <h2 class="section-headline">Galaxy Campus Identity &amp; Campaigns</h2>
+        <p class="samsung-intro">
+          As a Galaxy Campus Student Ambassador for Samsung Southeast Asia &amp; Oceania, I developed targeted campaigns and short-form storytelling across Samsung's major device lines. Explore my verified Instagram Reels below:
+        </p>
+
+        <div class="samsung-grid">
+          
+          <!-- S Series: S26 & S25 -->
+          <div class="samsung-card samsung-card-s">
+            <div class="samsung-card-header">
+              <div class="samsung-theme-badge">FLAGSHIP · GALAXY AI</div>
+              <h3 class="samsung-card-title">Galaxy S Series</h3>
+              <p class="samsung-card-desc">
+                Premium positioning highlighting Galaxy AI productivity, Nightography camera optics, and ultra-smooth performance tailored for student creators and innovators.
+              </p>
+            </div>
+
+            <!-- Reel Preview Switcher -->
+            <div class="reel-preview-container">
+              <div class="reel-tabs-bar">
+                <button class="reel-tab-btn active" data-target-pane="pane-s26" type="button">
+                  <span class="tab-indicator">●</span> S26 Ultra
+                </button>
+                <button class="reel-tab-btn" data-target-pane="pane-s25" type="button">
+                  <span class="tab-indicator">●</span> S25 Series
+                </button>
+              </div>
+
+              <!-- Reel Pane 1: S26 -->
+              <div class="reel-pane active" id="pane-s26">
+                <div class="reel-phone-mockup">
+                  <div class="reel-phone-notch"></div>
+                  <div class="reel-iframe-wrapper">
+                    <iframe 
+                      src="https://www.instagram.com/reel/DVMNTDLEmyO/embed/" 
+                      class="reel-iframe" 
+                      title="Galaxy S26 Ultra Reel Preview"
+                      loading="lazy" 
+                      frameborder="0" 
+                      scrolling="no" 
+                      allowtransparency="true"
+                      allow="encrypted-media;">
+                    </iframe>
+                  </div>
+                </div>
+                <div class="reel-action-footer">
+                  <button class="btn-reel-expand" data-open-modal="reel-s26" type="button">
+                    <span>⛶</span> Modal Player
+                  </button>
+                  <a href="https://www.instagram.com/reel/DVMNTDLEmyO/" target="_blank" rel="noopener noreferrer" class="btn-reel-external">
+                    Instagram ↗
+                  </a>
+                </div>
+              </div>
+
+              <!-- Reel Pane 2: S25 -->
+              <div class="reel-pane" id="pane-s25">
+                <div class="reel-phone-mockup">
+                  <div class="reel-phone-notch"></div>
+                  <div class="reel-iframe-wrapper">
+                    <iframe 
+                      data-src="https://www.instagram.com/reel/DFg3_2Wy3-r/embed/" 
+                      class="reel-iframe" 
+                      title="Galaxy S25 Reel Preview"
+                      loading="lazy" 
+                      frameborder="0" 
+                      scrolling="no" 
+                      allowtransparency="true"
+                      allow="encrypted-media;">
+                    </iframe>
+                  </div>
+                </div>
+                <div class="reel-action-footer">
+                  <button class="btn-reel-expand" data-open-modal="reel-s25" type="button">
+                    <span>⛶</span> Modal Player
+                  </button>
+                  <a href="https://www.instagram.com/reel/DFg3_2Wy3-r/" target="_blank" rel="noopener noreferrer" class="btn-reel-external">
+                    Instagram ↗
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="samsung-tags">
+              <span class="samsung-tag">#GalaxyAI</span>
+              <span class="samsung-tag">#GalaxyS26</span>
+              <span class="samsung-tag">#GalaxyS25</span>
+              <span class="samsung-tag">#Nightography</span>
+            </div>
+
+            <div class="samsung-card-articles">
+              <span class="samsung-article-label">Official Community Reads:</span>
+              <div class="samsung-article-links-group">
+                <a href="https://r1.community.samsung.com/t5/galaxy-s/galaxy-rewind-the-evolution-of-the-galaxy-s-series/td-p/36933618?src=ShareByUserCM" target="_blank" rel="noopener noreferrer" class="samsung-article-pill">
+                  📜 Galaxy Rewind: S Series ↗
+                </a>
+                <a href="https://r1.community.samsung.com/t5/galaxy-s/galaxy-s26-ultra-first-impressions-powerful-features-for/td-p/37804513?src=ShareByUserCM" target="_blank" rel="noopener noreferrer" class="samsung-article-pill pill-review">
+                  ⭐ S26 Ultra Review ↗
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Fold & Flip Series: Fold 8 & Fold 7 -->
+          <div class="samsung-card samsung-card-fold">
+            <div class="samsung-card-header">
+              <div class="samsung-theme-badge badge-cyan">FOLD &amp; FLIP · INNOVATION</div>
+              <h3 class="samsung-card-title">Fold &amp; Flip Series</h3>
+              <p class="samsung-card-desc">
+                Next-generation form factors spotlighting dual-screen multitasking, hands-free FlexCam recording, and effortless pocket portability for creators on the move.
+              </p>
+            </div>
+
+            <!-- Reel Preview Switcher -->
+            <div class="reel-preview-container">
+              <div class="reel-tabs-bar">
+                <button class="reel-tab-btn active" data-target-pane="pane-fold8" type="button">
+                  <span class="tab-indicator">●</span> Galaxy Fold 8
+                </button>
+                <button class="reel-tab-btn" data-target-pane="pane-fold7" type="button">
+                  <span class="tab-indicator">●</span> Galaxy Fold 7
+                </button>
+              </div>
+
+              <!-- Reel Pane 1: Fold 8 -->
+              <div class="reel-pane active" id="pane-fold8">
+                <div class="reel-phone-mockup">
+                  <div class="reel-phone-notch"></div>
+                  <div class="reel-iframe-wrapper">
+                    <iframe 
+                      src="https://www.instagram.com/reel/DbGNbIZTv2t/embed/" 
+                      class="reel-iframe" 
+                      title="Galaxy Fold 8 Reel Preview"
+                      loading="lazy" 
+                      frameborder="0" 
+                      scrolling="no" 
+                      allowtransparency="true"
+                      allow="encrypted-media;">
+                    </iframe>
+                  </div>
+                </div>
+                <div class="reel-action-footer">
+                  <button class="btn-reel-expand" data-open-modal="reel-fold8" type="button">
+                    <span>⛶</span> Modal Player
+                  </button>
+                  <a href="https://www.instagram.com/reel/DbGNbIZTv2t/" target="_blank" rel="noopener noreferrer" class="btn-reel-external">
+                    Instagram ↗
+                  </a>
+                </div>
+              </div>
+
+              <!-- Reel Pane 2: Fold 7 -->
+              <div class="reel-pane" id="pane-fold7">
+                <div class="reel-phone-mockup">
+                  <div class="reel-phone-notch"></div>
+                  <div class="reel-iframe-wrapper">
+                    <iframe 
+                      data-src="https://www.instagram.com/reel/DL4_bQ3ybpK/embed/" 
+                      class="reel-iframe" 
+                      title="Galaxy Fold 7 Reel Preview"
+                      loading="lazy" 
+                      frameborder="0" 
+                      scrolling="no" 
+                      allowtransparency="true"
+                      allow="encrypted-media;">
+                    </iframe>
+                  </div>
+                </div>
+                <div class="reel-action-footer">
+                  <button class="btn-reel-expand" data-open-modal="reel-fold7" type="button">
+                    <span>⛶</span> Modal Player
+                  </button>
+                  <a href="https://www.instagram.com/reel/DL4_bQ3ybpK/" target="_blank" rel="noopener noreferrer" class="btn-reel-external">
+                    Instagram ↗
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="samsung-tags">
+              <span class="samsung-tag">#GalaxyFold8</span>
+              <span class="samsung-tag">#GalaxyFold7</span>
+              <span class="samsung-tag">#FlexCam</span>
+              <span class="samsung-tag">#Multitasking</span>
+            </div>
+          </div>
+
+          <!-- A Series: A57, A37, A56, A36 -->
+          <div class="samsung-card samsung-card-a">
+            <div class="samsung-card-header">
+              <div class="samsung-theme-badge">A SERIES · CAMPUS REACH</div>
+              <h3 class="samsung-card-title">Galaxy A Series</h3>
+              <p class="samsung-card-desc">
+                Youth-centric storytelling showcasing vibrant Super AMOLED displays, 2-day battery endurance, and accessible student pricing for everyday university routines.
+              </p>
+            </div>
+
+            <!-- Reel Preview Switcher -->
+            <div class="reel-preview-container">
+              <div class="reel-tabs-bar">
+                <button class="reel-tab-btn active" data-target-pane="pane-a57" type="button">
+                  <span class="tab-indicator">●</span> A57 / A37
+                </button>
+                <button class="reel-tab-btn" data-target-pane="pane-a56" type="button">
+                  <span class="tab-indicator">●</span> A56 / A36
+                </button>
+              </div>
+
+              <!-- Reel Pane 1: A57 / A37 -->
+              <div class="reel-pane active" id="pane-a57">
+                <div class="reel-phone-mockup">
+                  <div class="reel-phone-notch"></div>
+                  <div class="reel-iframe-wrapper">
+                    <iframe 
+                      src="https://www.instagram.com/reel/DWTwFfgEveS/embed/" 
+                      class="reel-iframe" 
+                      title="Galaxy A57 and A37 Reel Preview"
+                      loading="lazy" 
+                      frameborder="0" 
+                      scrolling="no" 
+                      allowtransparency="true"
+                      allow="encrypted-media;">
+                    </iframe>
+                  </div>
+                </div>
+                <div class="reel-action-footer">
+                  <button class="btn-reel-expand" data-open-modal="reel-a57" type="button">
+                    <span>⛶</span> Modal Player
+                  </button>
+                  <a href="https://www.instagram.com/reel/DWTwFfgEveS/" target="_blank" rel="noopener noreferrer" class="btn-reel-external">
+                    Instagram ↗
+                  </a>
+                </div>
+              </div>
+
+              <!-- Reel Pane 2: A56 / A36 -->
+              <div class="reel-pane" id="pane-a56">
+                <div class="reel-phone-mockup">
+                  <div class="reel-phone-notch"></div>
+                  <div class="reel-iframe-wrapper">
+                    <iframe 
+                      data-src="https://www.instagram.com/reel/DGrM0MKTo1N/embed/" 
+                      class="reel-iframe" 
+                      title="Galaxy A56 and A36 Reel Preview"
+                      loading="lazy" 
+                      frameborder="0" 
+                      scrolling="no" 
+                      allowtransparency="true"
+                      allow="encrypted-media;">
+                    </iframe>
+                  </div>
+                </div>
+                <div class="reel-action-footer">
+                  <button class="btn-reel-expand" data-open-modal="reel-a56" type="button">
+                    <span>⛶</span> Modal Player
+                  </button>
+                  <a href="https://www.instagram.com/reel/DGrM0MKTo1N/" target="_blank" rel="noopener noreferrer" class="btn-reel-external">
+                    Instagram ↗
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="samsung-tags">
+              <span class="samsung-tag">#AwesomeScreen</span>
+              <span class="samsung-tag">#GalaxyA57</span>
+              <span class="samsung-tag">#GalaxyA56</span>
+              <span class="samsung-tag">#StudentLife</span>
+            </div>
+
+            <div class="samsung-card-articles">
+              <span class="samsung-article-label">Official Community Read:</span>
+              <div class="samsung-article-links-group">
+                <a href="https://r1.community.samsung.com/t5/galaxy-a/galaxy-rewind-the-evolution-of-the-galaxy-a-series/td-p/37396633?src=ShareByUserCM" target="_blank" rel="noopener noreferrer" class="samsung-article-pill">
+                  📜 Galaxy Rewind: A Series ↗
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Other Content & Creator Life -->
+          <div class="samsung-card samsung-card-creator">
+            <div class="samsung-card-header">
+              <div class="samsung-theme-badge badge-purple">CREATOR LIFE · COMMUNITY</div>
+              <h3 class="samsung-card-title">Campus Life &amp; Events</h3>
+              <p class="samsung-card-desc">
+                Behind-the-scenes experiential activations, university roadshows, and genuine student storytelling connecting youth culture with Samsung's ecosystem.
+              </p>
+            </div>
+
+            <!-- Single Reel Preview Container -->
+            <div class="reel-preview-container">
+              <div class="reel-tabs-bar">
+                <button class="reel-tab-btn active" data-target-pane="pane-creator" type="button">
+                  <span class="tab-indicator">●</span> Ambassador Life &amp; BTS
+                </button>
+              </div>
+
+              <!-- Reel Pane: Creator -->
+              <div class="reel-pane active" id="pane-creator">
+                <div class="reel-phone-mockup">
+                  <div class="reel-phone-notch"></div>
+                  <div class="reel-iframe-wrapper">
+                    <iframe 
+                      src="https://www.instagram.com/reel/DYuFCt6yIgx/embed/" 
+                      class="reel-iframe" 
+                      title="Campus Life and Events Reel Preview"
+                      loading="lazy" 
+                      frameborder="0" 
+                      scrolling="no" 
+                      allowtransparency="true"
+                      allow="encrypted-media;">
+                    </iframe>
+                  </div>
+                </div>
+                <div class="reel-action-footer">
+                  <button class="btn-reel-expand" data-open-modal="reel-creator" type="button">
+                    <span>⛶</span> Modal Player
+                  </button>
+                  <a href="https://www.instagram.com/reel/DYuFCt6yIgx/" target="_blank" rel="noopener noreferrer" class="btn-reel-external">
+                    Instagram ↗
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="samsung-tags">
+              <span class="samsung-tag">#GalaxyCampus</span>
+              <span class="samsung-tag">#CampusVlog</span>
+              <span class="samsung-tag">#SamsungAmbassador</span>
+              <span class="samsung-tag">#GenZCreators</span>
+            </div>
+        </div>
+      </div>
+
+      <!-- SAMSUNG COMMUNITY ARTICLES & EDITORIAL REVIEWS ("Galaxy Rewind" & "Review") -->
+      <div class="samsung-editorial-block" id="samsung-articles">
+          <div class="samsung-editorial-header">
+            <div class="wireframe-badge">Community Editorial &amp; Reviews</div>
+            <h3 class="samsung-editorial-title">Galaxy Rewind &amp; Flagship Tech Reviews</h3>
+            <p class="samsung-editorial-sub">
+              Historical retrospectives, hardware teardowns, and creator-focused flagship reviews authored by Marvin Barrios on the official <strong>Samsung Members Community</strong>.
+            </p>
+          </div>
+
+          <div class="samsung-articles-grid">
+            
+            <!-- Article 1: Galaxy Rewind - S Series -->
+            <article class="samsung-article-card">
+              <div class="article-card-header">
+                <span class="article-badge badge-flagship">GALAXY S</span>
+                <span class="article-date">Samsung Members</span>
+              </div>
+              <h4 class="article-card-title">Galaxy Rewind: The Evolution of the Galaxy S Series</h4>
+              <p class="article-card-desc">
+                A 16-year retrospective chronicling Samsung’s flagship milestones: from curved AMOLED innovations to Nightography optics and Galaxy AI.
+              </p>
+              <div class="article-footer-cta">
+                <a href="https://r1.community.samsung.com/t5/galaxy-s/galaxy-rewind-the-evolution-of-the-galaxy-s-series/td-p/36933618?src=ShareByUserCM" target="_blank" rel="noopener noreferrer" class="btn-read-article">
+                  Read S Series Rewind ↗
+                </a>
+              </div>
+            </article>
+
+            <!-- Article 2: Galaxy Rewind - A Series -->
+            <article class="samsung-article-card">
+              <div class="article-card-header">
+                <span class="article-badge badge-a-series">GALAXY A</span>
+                <span class="article-date">Samsung Members</span>
+              </div>
+              <h4 class="article-card-title">Galaxy Rewind: The Evolution of the Galaxy A Series</h4>
+              <p class="article-card-desc">
+                Tracing how Samsung turned the Galaxy A Series into the world’s most popular smartphone lineup with 120Hz Super AMOLED displays.
+              </p>
+              <div class="article-footer-cta">
+                <a href="https://r1.community.samsung.com/t5/galaxy-a/galaxy-rewind-the-evolution-of-the-galaxy-a-series/td-p/37396633?src=ShareByUserCM" target="_blank" rel="noopener noreferrer" class="btn-read-article">
+                  Read A Series Rewind ↗
+                </a>
+              </div>
+            </article>
+
+            <!-- Article 3: Galaxy S26 Ultra Review -->
+            <article class="samsung-article-card card-featured-review">
+              <div class="article-card-header">
+                <span class="article-badge badge-review">S26 ULTRA REVIEW</span>
+                <span class="article-date">Samsung Members</span>
+              </div>
+              <h4 class="article-card-title">Galaxy S26 Ultra: First Impressions &amp; Creator Features</h4>
+              <p class="article-card-desc">
+                Firsthand creator review exploring Snapdragon 8 Elite performance, Nightography Video clarity, 50MP optics, and Galaxy AI student workflows.
+              </p>
+              <div class="article-footer-cta">
+                <a href="https://r1.community.samsung.com/t5/galaxy-s/galaxy-s26-ultra-first-impressions-powerful-features-for/td-p/37804513?src=ShareByUserCM" target="_blank" rel="noopener noreferrer" class="btn-read-article btn-read-review">
+                  Read S26 Ultra Review ↗
+                </a>
+              </div>
+            </article>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PORTFOLIO SHOWCASE: OUR WORK (REDESIGNED PROJECT SHOWCASE) -->
+    <section class="work-showcase-section executive-only-section" id="work">
+      <div class="container">
+        
+        <div class="work-showcase-header">
+          <div class="wireframe-badge">Portfolio Showcase</div>
+          <h2 class="section-headline">Our Work</h2>
+          <p class="work-showcase-sub">
+            We've partnered with high-growth startups, corporate tech leaders, and university ecosystems to make campaigns break through where Gen Z and tech builders actually scroll.
+          </p>
+        </div>
+
+        <div class="work-cards-grid">
+          
+          <!-- Project 1: Costify -->
+          <article class="work-project-card">
+            <div class="work-project-top">
+              <div class="work-tag-group">
+                <span class="work-cat-badge badge-blue">STARTUP GROWTH</span>
+                <span class="work-sub-tag">DOST PUP TBI</span>
+              </div>
+              <a href="https://www.linkedin.com/in/marvinbarrios/" target="_blank" rel="noopener noreferrer" class="work-read-pill">
+                Case Study &rarr;
+              </a>
+            </div>
+
+            <h3 class="work-project-title">Costify (DOST PUP TBI)</h3>
+            <p class="work-project-desc">
+              How an incubated campus startup leveraged organic short-form loops to drive massive sales and viral reach in 5 months.
+            </p>
+
+            <div class="work-stats-banner">
+              <div class="work-stat-cell">
+                <div class="work-stat-num" data-target="8" data-suffix="M+">8M+</div>
+                <div class="work-stat-lbl">TOTAL VIEWS</div>
+              </div>
+              <div class="work-stat-cell">
+                <div class="work-stat-num" data-target="3.9" data-decimals="1" data-suffix="K+">3.9K+</div>
+                <div class="work-stat-lbl">PURCHASES</div>
+              </div>
+              <div class="work-stat-cell">
+                <div class="work-stat-num" data-target="1.75" data-decimals="2" data-prefix="₱" data-suffix="M+">₱1.75M+</div>
+                <div class="work-stat-lbl">REVENUE (5 MO)</div>
+              </div>
+            </div>
+
+            <div class="work-project-footer">
+              <div class="work-tags-list">
+                <span class="work-pill">#TikTokGrowth</span>
+                <span class="work-pill">#ViralLoop</span>
+                <span class="work-pill">#ECommerce</span>
+              </div>
+              <a href="https://www.linkedin.com/in/marvinbarrios/" target="_blank" rel="noopener noreferrer" class="btn-project-cta">
+                Case Study &rarr;
+              </a>
+            </div>
+          </article>
+
+          <!-- Project 2: Samsung Galaxy Campus -->
+          <article class="work-project-card">
+            <div class="work-project-top">
+              <div class="work-tag-group">
+                <span class="work-cat-badge badge-purple">GLOBAL TECH</span>
+                <span class="work-sub-tag">SAMSUNG SEA&amp;O</span>
+              </div>
+              <a href="https://www.linkedin.com/in/marvinbarrios/" target="_blank" rel="noopener noreferrer" class="work-read-pill">
+                Read More &rarr;
+              </a>
+            </div>
+
+            <h3 class="work-project-title">Samsung Galaxy Campus</h3>
+            <p class="work-project-desc">
+              Leading Southeast Asia &amp; Oceania campus activations across Galaxy S, A Series, and Ecosystem workflows.
+            </p>
+
+            <div class="work-stats-banner">
+              <div class="work-stat-cell">
+                <div class="work-stat-num" data-target="20" data-suffix="M+">20M+</div>
+                <div class="work-stat-lbl">IMPRESSIONS</div>
+              </div>
+              <div class="work-stat-cell">
+                <div class="work-stat-num" data-target="15" data-suffix="+">15+</div>
+                <div class="work-stat-lbl">CAMPUS HUBS</div>
+              </div>
+              <div class="work-stat-cell">
+                <div class="work-stat-num" data-target="3" data-suffix="×">3×</div>
+                <div class="work-stat-lbl">SERIES CAMPAIGNS</div>
+              </div>
+            </div>
+
+            <div class="work-project-footer">
+              <div class="work-tags-list">
+                <span class="work-pill">#GalaxyCampus</span>
+                <span class="work-pill">#SamsungSEA</span>
+                <span class="work-pill">#Ambassador</span>
+              </div>
+              <a href="https://www.linkedin.com/in/marvinbarrios/" target="_blank" rel="noopener noreferrer" class="btn-project-cta">
+                Read More &rarr;
+              </a>
+            </div>
+          </article>
+
+          <!-- Project 3: AWS Cloud Club PUP -->
+          <article class="work-project-card">
+            <div class="work-project-top">
+              <div class="work-tag-group">
+                <span class="work-cat-badge badge-orange">DEV COMMUNITY</span>
+                <span class="work-sub-tag">AWS PUP</span>
+              </div>
+              <a href="https://www.linkedin.com/in/marvinbarrios/" target="_blank" rel="noopener noreferrer" class="work-read-pill">
+                Read More &rarr;
+              </a>
+            </div>
+
+            <h3 class="work-project-title">AWS Cloud Club PUP</h3>
+            <p class="work-project-desc">
+              Architected community marketing strategies that scaled cloud literacy, builder hackathons, and certified workshops.
+            </p>
+
+            <div class="work-stats-banner">
+              <div class="work-stat-cell">
+                <div class="work-stat-num" data-target="300" data-prefix="+" data-suffix="%">+300%</div>
+                <div class="work-stat-lbl">MEMBER GROWTH</div>
+              </div>
+              <div class="work-stat-cell">
+                <div class="work-stat-num" data-target="1.2" data-decimals="1" data-suffix="K+">1.2K+</div>
+                <div class="work-stat-lbl">BUILDERS</div>
+              </div>
+              <div class="work-stat-cell">
+                <div class="work-stat-num" data-target="45" data-suffix="+">45+</div>
+                <div class="work-stat-lbl">TECH SESSIONS</div>
+              </div>
+            </div>
+
+            <div class="work-project-footer">
+              <div class="work-tags-list">
+                <span class="work-pill">#AWSCloud</span>
+                <span class="work-pill">#StudentBuilders</span>
+                <span class="work-pill">#Hackathons</span>
+              </div>
+              <a href="https://www.linkedin.com/in/marvinbarrios/" target="_blank" rel="noopener noreferrer" class="btn-project-cta">
+                Read More &rarr;
+              </a>
+            </div>
+          </article>
+
+          <!-- Project 4: Digital Storytelling Talk -->
+          <article class="work-project-card">
+            <div class="work-project-top">
+              <div class="work-tag-group">
+                <span class="work-cat-badge badge-green">THOUGHT LEADERSHIP</span>
+                <span class="work-sub-tag">KEYNOTE</span>
+              </div>
+              <a href="#videos" class="work-read-pill">
+                Watch &rarr;
+              </a>
+            </div>
+
+            <h3 class="work-project-title">Digital Storytelling Talk</h3>
+            <p class="work-project-desc">
+              Keynote presentation unveiling the 5-second curiosity rule and frameworks for compounding one core idea into dozens of videos.
+            </p>
+
+            <div class="work-stats-banner">
+              <div class="work-stat-cell">
+                <div class="work-stat-num" data-target="120" data-suffix="K+">120K+</div>
+                <div class="work-stat-lbl">IMPRESSIONS</div>
+              </div>
+              <div class="work-stat-cell">
+                <div class="work-stat-num" data-target="42" data-suffix=":15">42:15</div>
+                <div class="work-stat-lbl">DURATION</div>
+              </div>
+              <div class="work-stat-cell">
+                <div class="work-stat-num" data-target="5" data-suffix="s">5s</div>
+                <div class="work-stat-lbl">HOOK FRAMEWORK</div>
+              </div>
+            </div>
+
+            <div class="work-project-footer">
+              <div class="work-tags-list">
+                <span class="work-pill">#VisualMedia</span>
+                <span class="work-pill">#KeynoteTalk</span>
+                <span class="work-pill">#CuriosityHook</span>
+              </div>
+              <a href="#videos" class="btn-project-cta">
+                Watch &rarr;
+              </a>
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- BRANDING & BRAND CREATION (SCALE & MOVE FORWARD) -->
+    <section class="branding-showcase-section executive-only-section" id="branding">
+      <div class="container">
+        
+        <div class="branding-header">
+          <div class="wireframe-badge">Branding &amp; Brand Creation</div>
+          <h2 class="section-headline">Branding Creation to Scale &amp; Move Forward</h2>
+          <p class="branding-subtitle">
+            I help in branding and architect comprehensive brand creation for innovative groups, campus networks, and creative agencies to scale their reach, build loyal communities, and move forward.
+          </p>
+        </div>
+
+        <div class="branding-cards-grid">
+          
+          <!-- Brand 1: e:Novators -->
+          <article class="branding-card">
+            <div class="branding-card-header">
+              <span class="branding-badge badge-purple">TECH COMMUNITY BRANDING</span>
+              <a href="https://www.facebook.com/share/1RuZGwUYD2/" target="_blank" rel="noopener noreferrer" class="branding-platform-pill facebook-pill" title="Visit e:Novators on Facebook">
+                Facebook ↗
+              </a>
+            </div>
+            
+            <h3 class="branding-card-title">e:Novators</h3>
+            <div class="branding-role-badge">Brand Creation &amp; Community Ecosystem Lead</div>
+            
+            <p class="branding-card-desc">
+              Conceived the core branding identity and community architecture for e:Novators. Designed visual narratives, student hackathon positioning, and project frameworks to empower student builders, demystify tech innovation, and scale developer participation across university campuses.
+            </p>
+
+            <div class="branding-highlights">
+              <div class="branding-highlight-item">
+                <span class="highlight-bullet">⚡</span>
+                <span><strong>Brand Creation:</strong> Unified tech innovator visual identity &amp; community positioning.</span>
+              </div>
+              <div class="branding-highlight-item">
+                <span class="highlight-bullet">📈</span>
+                <span><strong>Scale &amp; Move Forward:</strong> Multi-campus hackathons, demo days, and developer recruitment.</span>
+              </div>
+            </div>
+
+            <div class="branding-card-footer">
+              <div class="branding-tags">
+                <span class="work-pill">#eNovators</span>
+                <span class="work-pill">#TechBrand</span>
+                <span class="work-pill">#YouthBuilders</span>
+              </div>
+              <a href="https://www.facebook.com/share/1RuZGwUYD2/" target="_blank" rel="noopener noreferrer" class="btn-branding-link">
+                View Community ↗
+              </a>
+            </div>
+          </article>
+
+          <!-- Brand 2: PUP Campus Connect -->
+          <article class="branding-card">
+            <div class="branding-card-header">
+              <span class="branding-badge badge-red">CAMPUS NETWORK BRANDING</span>
+              <a href="https://www.facebook.com/share/1cZ8qLviWg/" target="_blank" rel="noopener noreferrer" class="branding-platform-pill facebook-pill" title="Visit PUP Campus Connect on Facebook">
+                Facebook ↗
+              </a>
+            </div>
+            
+            <h3 class="branding-card-title">PUP Campus Connect</h3>
+            <div class="branding-role-badge">Brand Architecture &amp; Campus Media Growth</div>
+            
+            <p class="branding-card-desc">
+              Designed the brand creation and student communication architecture for PUP Campus Connect. Structured an organic content network connecting thousands of students across departments and satellite branches with real-time opportunities, tech news, and student culture.
+            </p>
+
+            <div class="branding-highlights">
+              <div class="branding-highlight-item">
+                <span class="highlight-bullet">⚡</span>
+                <span><strong>Brand Creation:</strong> High-signal campus media voice, relatable storytelling &amp; trusted guidelines.</span>
+              </div>
+              <div class="branding-highlight-item">
+                <span class="highlight-bullet">📈</span>
+                <span><strong>Scale &amp; Move Forward:</strong> Viral student UGC loops and cross-department digital reach.</span>
+              </div>
+            </div>
+
+            <div class="branding-card-footer">
+              <div class="branding-tags">
+                <span class="work-pill">#CampusConnect</span>
+                <span class="work-pill">#StudentMedia</span>
+                <span class="work-pill">#UniversityGrowth</span>
+              </div>
+              <a href="https://www.facebook.com/share/1cZ8qLviWg/" target="_blank" rel="noopener noreferrer" class="btn-branding-link">
+                View Network ↗
+              </a>
+            </div>
+          </article>
+
+          <!-- Brand 3: AI Playgrounds -->
+          <article class="branding-card">
+            <div class="branding-card-header">
+              <span class="branding-badge badge-cyan">GENERATIVE AI BRANDING</span>
+              <a href="https://www.facebook.com/share/1FWcS4aC3j/" target="_blank" rel="noopener noreferrer" class="branding-platform-pill facebook-pill" title="Visit AI Playgrounds on Facebook">
+                Facebook ↗
+              </a>
+            </div>
+            
+            <h3 class="branding-card-title">AI Playgrounds</h3>
+            <div class="branding-role-badge">Brand Architect &amp; GenAI Community Design</div>
+            
+            <p class="branding-card-desc">
+              Pioneered the brand identity and experience packaging for AI Playgrounds. Transformed complex AI models and prompt engineering into interactive, playful sandbox sessions that make artificial intelligence fun, accessible, and actionable for Gen Z builders.
+            </p>
+
+            <div class="branding-highlights">
+              <div class="branding-highlight-item">
+                <span class="highlight-bullet">⚡</span>
+                <span><strong>Brand Creation:</strong> Futuristic neon visual aesthetic and non-intimidating tech storytelling.</span>
+              </div>
+              <div class="branding-highlight-item">
+                <span class="highlight-bullet">📈</span>
+                <span><strong>Scale &amp; Move Forward:</strong> Interactive prompt battles, live tool sandboxes, and builder demos.</span>
+              </div>
+            </div>
+
+            <div class="branding-card-footer">
+              <div class="branding-tags">
+                <span class="work-pill">#AIPlaygrounds</span>
+                <span class="work-pill">#GenerativeAI</span>
+                <span class="work-pill">#FutureOfWork</span>
+              </div>
+              <a href="https://www.facebook.com/share/1FWcS4aC3j/" target="_blank" rel="noopener noreferrer" class="btn-branding-link">
+                Explore AI Playgrounds ↗
+              </a>
+            </div>
+          </article>
+
+          <!-- Brand 4: JJT Digital Innovative Agency -->
+          <article class="branding-card branding-card-agency">
+            <div class="branding-card-header">
+              <span class="branding-badge badge-orange">CREATIVE AGENCY BRANDING</span>
+              <a href="https://www.instagram.com/reel/DdTppH6gltr/?stkn=MWwwNDM1YTlkbDFuYg==" target="_blank" rel="noopener noreferrer" class="branding-platform-pill instagram-pill" title="Watch on Instagram">
+                Instagram Reel ↗
+              </a>
+            </div>
+            
+            <h3 class="branding-card-title">JJT Digital Innovative Agency</h3>
+            <div class="branding-role-badge">Agency Brand Strategy &amp; Video Production Engine</div>
+            
+            <p class="branding-card-desc">
+              Engineered the agency brand identity, high-conversion visual marketing frameworks, and viral short-form video systems for JJT Digital Innovative Agency to scale client brands and accelerate forward in the digital media landscape.
+            </p>
+
+            <!-- Embedded Instagram Reel Preview Frame -->
+            <div class="agency-reel-preview">
+              <div class="agency-reel-frame">
+                <iframe 
+                  src="https://www.instagram.com/reel/DdTppH6gltr/embed/" 
+                  class="agency-reel-iframe" 
+                  title="JJT Digital Innovative Agency Reel" 
+                  scrolling="no" 
+                  allowtransparency="true"
+                  allowfullscreen="true">
+                </iframe>
+              </div>
+              <div class="agency-reel-meta">
+                <div class="agency-reel-account">@jjtdigitalinnovative.agency</div>
+                <div class="agency-reel-sub">Viral Brand Scaling Reel</div>
+              </div>
+            </div>
+
+            <div class="branding-card-footer">
+              <div class="branding-tags">
+                <span class="work-pill">#JJTDigital</span>
+                <span class="work-pill">#AgencyGrowth</span>
+                <span class="work-pill">#VideoMoat</span>
+              </div>
+              <a href="https://www.instagram.com/reel/DdTppH6gltr/?stkn=MWwwNDM1YTlkbDFuYg==" target="_blank" rel="noopener noreferrer" class="btn-branding-link btn-instagram-gradient">
+                Watch Agency Reel ↗
+              </a>
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- STRATEGIC FOCUS & APPROACH (Marvin's Core Marketing Pillars) -->
+    <section class="approach-section executive-only-section" id="approach">
+      <div class="container">
+        
+        <div class="approach-header">
+          <div class="wireframe-badge">Approach &amp; Strategy</div>
+          <h2>Strategic Marketing Pillars</h2>
+          <p>
+            Bridging technical innovations with youth culture, student builder ecosystems, and scalable digital campaigns that build real engagement and adoption.
+          </p>
+        </div>
+
+        <div class="approach-grid">
+          
+          <!-- Pillar 1 -->
+          <div class="approach-card">
+            <div class="approach-card-top">
+              <span class="approach-icon-badge badge-purple">01</span>
+              <span class="approach-tag">COMMUNITY</span>
+            </div>
+            <h3 class="approach-card-title">Campus &amp; Student Ecosystems</h3>
+            <p class="approach-card-desc">
+              Building grassroots student chapters and ambassador networks (like Samsung Galaxy Campus &amp; AWS Cloud Clubs) that drive organic word-of-mouth and long-term brand loyalty among university builders.
+            </p>
+            <div class="approach-tags-row">
+              <span class="approach-pill">Ambassador Programs</span>
+              <span class="approach-pill">Student Communities</span>
+            </div>
+          </div>
+
+          <!-- Pillar 2 -->
+          <div class="approach-card">
+            <div class="approach-card-top">
+              <span class="approach-icon-badge badge-blue">02</span>
+              <span class="approach-tag">GTM &amp; GROWTH</span>
+            </div>
+            <h3 class="approach-card-title">Startup Go-To-Market &amp; Launch</h3>
+            <p class="approach-card-desc">
+              Designing customer acquisition funnels, organic product marketing loops, and validated commercial traction for incubated technology startups like Costify at DOST PUP TBI.
+            </p>
+            <div class="approach-tags-row">
+              <span class="approach-pill">GTM Funnels</span>
+              <span class="approach-pill">Incubated Startups</span>
+            </div>
+          </div>
+
+          <!-- Pillar 3 -->
+          <div class="approach-card">
+            <div class="approach-card-top">
+              <span class="approach-icon-badge badge-purple">03</span>
+              <span class="approach-tag">STORYTELLING</span>
+            </div>
+            <h3 class="approach-card-title">Visual Storytelling &amp; Media</h3>
+            <p class="approach-card-desc">
+              Translating complex cloud architectures, gadgets, and software features into compelling keynote talks, dynamic video narratives, and accessible educational content.
+            </p>
+            <div class="approach-tags-row">
+              <span class="approach-pill">Keynote Speaking</span>
+              <span class="approach-pill">Content Production</span>
+            </div>
+          </div>
+
+          <!-- Pillar 4 -->
+          <div class="approach-card">
+            <div class="approach-card-top">
+              <span class="approach-icon-badge badge-blue">04</span>
+              <span class="approach-tag">OMNICHANNEL</span>
+            </div>
+            <h3 class="approach-card-title">Integrated Campaign Delivery</h3>
+            <p class="approach-card-desc">
+              Unifying physical campus roadshows, builder hackathons, PR partnerships, and digital channels into consistent omnichannel campaigns that deliver measurable outcomes.
+            </p>
+            <div class="approach-tags-row">
+              <span class="approach-pill">Campus Roadshows</span>
+              <span class="approach-pill">Campaign Architecture</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- EXPERIENCE SECTION -->
+    <section class="experience-section executive-only-section" id="experience">
+      <div class="container">
+        
+        <div class="experience-header">
+          <div class="wireframe-badge">Experience</div>
+          <h2 class="section-headline">A Track Record of Diversity</h2>
+          <p class="section-subtitle">From global tech leaders and student chapters to high-growth startup ventures and creative marketing agencies.</p>
+        </div>
+
+        <div class="experience-list" id="experienceList">
+          
+          <!-- Role 1: Samsung SEA&O -->
+          <div class="experience-row">
+            <div class="exp-left">
+              <div class="exp-logo-badge logo-samsung">SAMS</div>
+              <div class="exp-details">
+                <h4>Galaxy Campus Student Ambassador</h4>
+                <div class="exp-company">Samsung Southeast Asia & Oceania</div>
+              </div>
+            </div>
+            <div class="exp-right">
+              2024 – Present
+            </div>
+          </div>
+
+          <!-- Role 2: AWS Cloud Club PUP -->
+          <div class="experience-row">
+            <div class="exp-left">
+              <div class="exp-logo-badge logo-aws">AWS</div>
+              <div class="exp-details">
+                <h4>Marketing Director</h4>
+                <div class="exp-company">AWS Cloud Club PUP Manila</div>
+              </div>
+            </div>
+            <div class="exp-right">
+              2024 – Present
+            </div>
+          </div>
+
+          <!-- Role 3: e:Novators -->
+          <div class="experience-row">
+            <div class="exp-left">
+              <div class="exp-logo-badge logo-enovators">e:N</div>
+              <div class="exp-details">
+                <h4>Brand Creation &amp; Community Ecosystem Lead</h4>
+                <div class="exp-company">
+                  <a href="https://www.facebook.com/share/1RuZGwUYD2/" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: underline; text-decoration-style: dotted;">e:Novators</a>
+                </div>
+              </div>
+            </div>
+            <div class="exp-right">
+              2024 – Present
+            </div>
+          </div>
+
+          <!-- Role 4: PUP Campus Connect -->
+          <div class="experience-row">
+            <div class="exp-left">
+              <div class="exp-logo-badge logo-campusconnect">PCC</div>
+              <div class="exp-details">
+                <h4>Brand Architecture &amp; Campus Growth Lead</h4>
+                <div class="exp-company">
+                  <a href="https://www.facebook.com/share/1cZ8qLviWg/" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: underline; text-decoration-style: dotted;">PUP Campus Connect</a>
+                </div>
+              </div>
+            </div>
+            <div class="exp-right">
+              2024 – Present
+            </div>
+          </div>
+
+          <!-- Role 5: AI Playgrounds -->
+          <div class="experience-row">
+            <div class="exp-left">
+              <div class="exp-logo-badge logo-aiplay">AI:P</div>
+              <div class="exp-details">
+                <h4>Brand Architect &amp; Co-Founder</h4>
+                <div class="exp-company">
+                  <a href="https://www.facebook.com/share/1FWcS4aC3j/" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: underline; text-decoration-style: dotted;">AI Playgrounds</a>
+                </div>
+              </div>
+            </div>
+            <div class="exp-right">
+              2024 – Present
+            </div>
+          </div>
+
+          <!-- Role 6: JJT Digital Innovative Agency -->
+          <div class="experience-row">
+            <div class="exp-left">
+              <div class="exp-logo-badge logo-jjt">JJT</div>
+              <div class="exp-details">
+                <h4>Agency Brand Strategy &amp; Video Production Engine</h4>
+                <div class="exp-company">
+                  <a href="https://www.instagram.com/reel/DdTppH6gltr/?stkn=MWwwNDM1YTlkbDFuYg==" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: underline; text-decoration-style: dotted;">JJT Digital Innovative Agency</a>
+                </div>
+              </div>
+            </div>
+            <div class="exp-right">
+              2024 – Present
+            </div>
+          </div>
+
+          <!-- Role 4: ibex. -->
+          <div class="experience-row">
+            <div class="exp-left">
+              <div class="exp-logo-badge logo-ibex">ibex.</div>
+              <div class="exp-details">
+                <h4>Customer Service Rep.</h4>
+                <div class="exp-company">ibex. Global Solutions</div>
+              </div>
+            </div>
+            <div class="exp-right">
+              July 2025 – December 2025
+            </div>
+          </div>
+
+          <!-- Role 5: Costify -->
+          <div class="experience-row">
+            <div class="exp-left">
+              <div class="exp-logo-badge logo-costify">Cost</div>
+              <div class="exp-details">
+                <h4>Marketing Lead</h4>
+                <div class="exp-company">Costify (DOST PUP TBI-backed)</div>
+              </div>
+            </div>
+            <div class="exp-right">
+              March 2025 – July 2025
+            </div>
+          </div>
+
+          <!-- Role 6: eCloudvalley -->
+          <div class="experience-row">
+            <div class="exp-left">
+              <div class="exp-logo-badge logo-ecloud">eCV</div>
+              <div class="exp-details">
+                <h4>Business Development</h4>
+                <div class="exp-company">eCloudvalley Digital Technology (AWS Premier Partner)</div>
+              </div>
+            </div>
+            <div class="exp-right">
+              August 2023 – October 2023
+            </div>
+          </div>
+
+          <!-- Role 7: Elevate Innovations -->
+          <div class="experience-row">
+            <div class="exp-left">
+              <div class="exp-logo-badge logo-elevate">up</div>
+              <div class="exp-details">
+                <h4>Editor & Content Lead</h4>
+                <div class="exp-company">Elevate Innovations Corp.</div>
+              </div>
+            </div>
+            <div class="exp-right">
+              August 2020 – August 2023
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Mid-page Quote Banner -->
+        <div class="team-photo-banner">
+          <div class="banner-quote">“Leadership is an action, not a title. Every campaign starts with listening to the audience first.”</div>
+          <div class="banner-caption">— Marvin Barrios · Keynote, Visual Media & Content Creation</div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SKILLS SECTION -->
+    <section class="skills-section executive-only-section" id="skills">
+      <div class="container">
+        
+        <div class="skills-header">
+          <div class="wireframe-badge">Skills</div>
+          <h2 class="section-headline">What Can I Do?</h2>
+          <p class="section-subtitle">A multidisciplinary blend of viral marketing intuition, technical systems thinking, and campaign execution.</p>
+        </div>
+
+        <div class="skills-grid" id="skillsGrid">
+          
+          <!-- Skill 1 -->
+          <div class="skill-card">
+            <div>
+              <h3>Project Lifecycle</h3>
+              <p>Leading tech initiatives from ideation and sprint planning to cross-functional execution, QA, and post-campaign analytical reviews.</p>
+            </div>
+            <a href="#" class="skill-link" data-open-modal="skill-lifecycle">See details &rarr;</a>
+          </div>
+
+          <!-- Skill 2 -->
+          <div class="skill-card">
+            <div>
+              <h3>Full Stack Marketer</h3>
+              <p>Mastering the entire growth loop: organic virality, paid acquisition, conversion rate optimization, email automation, and cohort retention.</p>
+            </div>
+            <a href="#" class="skill-link" data-open-modal="skill-fullstack">See details &rarr;</a>
+          </div>
+
+          <!-- Skill 3 -->
+          <div class="skill-card">
+            <div>
+              <h3>Copywriting</h3>
+              <p>Writing high-converting value propositions, social hooks, persuasive landing pages, and storytelling that turns skimmers into advocates.</p>
+            </div>
+            <a href="#" class="skill-link" data-open-modal="skill-copywriting">See details &rarr;</a>
+          </div>
+
+          <!-- Skill 4 -->
+          <div class="skill-card">
+            <div>
+              <h3>Content Creation</h3>
+              <p>End-to-end video scripting, cinematography, Premiere Pro / CapCut workflows, and dynamic motion graphics tuned for modern algorithms.</p>
+            </div>
+            <a href="#" class="skill-link" data-open-modal="skill-video">See details &rarr;</a>
+          </div>
+
+          <!-- Skill 5 -->
+          <div class="skill-card">
+            <div>
+              <h3>Event Management</h3>
+              <p>Organizing campus tech roadshows, cloud workshops, and hackathons with seamless logistics, sponsor management, and attendee excitement.</p>
+            </div>
+            <a href="#" class="skill-link" data-open-modal="skill-event">See details &rarr;</a>
+          </div>
+
+          <!-- Skill 6 -->
+          <div class="skill-card">
+            <div>
+              <h3>Integrated Marketing</h3>
+              <p>Orchestrating cohesive omnichannel strategies unifying social media, campus ambassadors, PR releases, and digital growth funnels.</p>
+            </div>
+            <a href="#" class="skill-link" data-open-modal="skill-integrated">See details &rarr;</a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- RECOMMENDATIONS SECTION -->
+    <section class="recommendations-section executive-only-section" id="recommendations">
+      <div class="container">
+        
+        <div class="wireframe-badge">Recommendation</div>
+        <div class="rec-header-row">
+          <h2 class="section-headline" style="margin-bottom: 0;">What My References Say</h2>
+          <div class="rec-nav-arrows">
+            <button class="rec-arrow-btn" id="recPrev" aria-label="Previous Testimonial">&larr;</button>
+            <button class="rec-arrow-btn" id="recNext" aria-label="Next Testimonial">&rarr;</button>
+          </div>
+        </div>
+
+        <div class="rec-grid">
+          
+          <div class="rec-card">
+            <div class="rec-quote-mark">“</div>
+            <p class="rec-text">
+              “Marvin's ability to take technical topics like AWS cloud architectures and translate them into highly engaging student workshops was nothing short of extraordinary. He knows how to rally communities and drive real attendance.”
+            </p>
+            <div class="rec-author">
+              <div class="rec-author-avatar">CC</div>
+              <div>
+                <div class="rec-author-name">Cloud Club Leadership</div>
+                <div class="rec-author-role">AWS Cloud Club PUP Manila</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="rec-card">
+            <div class="rec-quote-mark">“</div>
+            <p class="rec-text">
+              “Marvin led our viral organic content strategy at Costify, driving over 8 million views and ₱1.75M in revenue within 5 months. A versatile tech marketer who blends creative intuition with conversion data.”
+            </p>
+            <div class="rec-author">
+              <div class="rec-author-avatar">CF</div>
+              <div>
+                <div class="rec-author-name">Startup Advisory Board</div>
+                <div class="rec-author-role">Costify · DOST PUP TBI</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer" id="contact">
+    <div class="container">
+      
+      <div class="footer-top-grid">
+        
+        <!-- Left Column: Contact details -->
+        <div class="footer-contact-info">
+          <p style="font-weight: 700; color: var(--text-dark); margin-bottom: 8px;">Stay Connected.</p>
+          <p><a href="mailto:marvinbarrios.tech@gmail.com">marvinbarrios.tech@gmail.com</a></p>
+          <p><a href="tel:+639000000000">+63 (900) 000-0000</a></p>
+          <p style="color: var(--text-muted);">Manila, Philippines</p>
+        </div>
+
+        <!-- Right Column: Collaboration Callout -->
+        <div class="footer-collab-box">
+          <h2>Want to collaborate?<br>Lets make it a reality.</h2>
+          <div class="footer-collab-buttons">
+            <a href="mailto:marvinbarrios.tech@gmail.com" class="btn btn-primary">Send an Email</a>
+            <a href="https://www.linkedin.com/in/marvinbarrios/" target="_blank" rel="noopener noreferrer" class="btn btn-outline">Connect on LinkedIn</a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom-bar">
+        <div>vin. alright reserved 2026.</div>
+        <div class="footer-social-links">
+          <a href="https://www.linkedin.com/in/marvinbarrios/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a href="https://www.tiktok.com" target="_blank" rel="noopener noreferrer">TikTok</a>
+          <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer">YouTube</a>
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- MODAL / DETAIL DRAWER -->
+  <div class="modal-backdrop" id="detailsModal" aria-hidden="true">
+    <div class="modal-window">
+      <button class="modal-close" id="modalClose">&times;</button>
+      <h3 id="modalTitle" style="font-size: 1.6rem; margin-bottom: 6px;">Title</h3>
+      <p id="modalSubtitle" style="font-family: var(--font-mono); color: var(--purple-main); font-size: 0.85rem; margin-bottom: 20px;">Subtitle</p>
+      <div id="modalBody" style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;"></div>
+    </div>
+  </div>
+
+</body>
+</html>
