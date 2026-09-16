@@ -31,6 +31,8 @@ function doPost(e) {
     var timestamp = new Date().toLocaleString("en-US", { timeZone: "Asia/Manila" });
     var email = (data.email || "").trim();
     var code = (data.code || "").trim();
+    var deviceId = (data.deviceId || data.device || "N/A").trim();
+    var ipAddress = (data.ip || data.ipAddress || "N/A").trim();
     var source = data.source || "Samsung Voucher Claim";
 
     var matchedRow = -1;
@@ -48,27 +50,26 @@ function doPost(e) {
       }
     }
 
-    // 2. If code matched in Column C, update Columns A & B on that exact row!
+    // 2. If code matched in Column C, update Columns A, B, D, E on that exact row!
     if (matchedRow > 0) {
       mainSheet.getRange(matchedRow, 1).setValue(timestamp); // Col A: Timestamp
       mainSheet.getRange(matchedRow, 2).setValue(email);     // Col B: Email
-      if (source) {
-        mainSheet.getRange(matchedRow, 4).setValue(source);  // Col D: Source/Device
-      }
+      mainSheet.getRange(matchedRow, 4).setValue(deviceId);  // Col D: Device ID
+      mainSheet.getRange(matchedRow, 5).setValue(ipAddress); // Col E: IP Address
     } else {
       // Fallback: if code not pre-listed, append to bottom
-      mainSheet.appendRow([timestamp, email, code, source]);
+      mainSheet.appendRow([timestamp, email, code, deviceId, ipAddress]);
     }
 
     // 3. Also log to a dedicated "Claims Log" tab for instant viewing at the top
     var logSheet = ss.getSheetByName("Claims Log");
     if (!logSheet) {
       logSheet = ss.insertSheet("Claims Log", 0); // Put it as the first tab!
-      logSheet.appendRow(["Timestamp (Manila)", "Email Address", "Voucher Code Claimed", "Source"]);
-      logSheet.getRange("A1:D1").setFontWeight("bold").setBackground("#0D1117").setFontColor("#F59E0B");
+      logSheet.appendRow(["Timestamp (Manila)", "Email Address", "Voucher Code Claimed", "Device ID", "IP Address"]);
+      logSheet.getRange("A1:E1").setFontWeight("bold").setBackground("#0D1117").setFontColor("#F59E0B");
       logSheet.setFrozenRows(1);
     }
-    logSheet.appendRow([timestamp, email, code, source]);
+    logSheet.appendRow([timestamp, email, code, deviceId, ipAddress]);
 
     return ContentService.createTextOutput(JSON.stringify({
       status: "success",

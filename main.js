@@ -663,13 +663,42 @@ document.addEventListener('DOMContentLoaded', () => {
       // Google Sheets Integration for Voucher Leads
       // Target Sheet: https://docs.google.com/spreadsheets/d/1jBXnXNKh64a_uGo7fcbCbU72CJt-0Uj7GM6PV4bLyxM/edit
       // --------------------------------------------------------------------------
-      const logVoucherToGoogleSheet = async (leadEmail, assignedCode) => {
-        // 1. Always back up locally in leads queue
+        // 1. Retrieve or generate persistent Device ID
+        const getDeviceId = () => {
+          let devId = localStorage.getItem('marvin_device_uuid');
+          if (!devId) {
+            const platform = /iPhone|iPad|iPod/.test(navigator.userAgent) ? 'iOS' :
+                             /Android/.test(navigator.userAgent) ? 'Android' :
+                             /Mac/.test(navigator.userAgent) ? 'Mac' :
+                             /Win/.test(navigator.userAgent) ? 'Windows' : 'Device';
+            const rand = Math.random().toString(36).substring(2, 8).toUpperCase();
+            devId = `${platform}-${Date.now().toString(36).toUpperCase()}-${rand}`;
+            localStorage.setItem('marvin_device_uuid', devId);
+          }
+          return devId;
+        };
+        const deviceId = getDeviceId();
+
+        // 2. Fetch public IP address
+        let clientIp = 'Unknown';
+        try {
+          const ipRes = await fetch('https://api.ipify.org?format=json', { cache: 'no-store' });
+          if (ipRes.ok) {
+            const ipData = await ipRes.json();
+            if (ipData && ipData.ip) clientIp = ipData.ip;
+          }
+        } catch (e) {
+          // IP fallback
+        }
+
+        // 3. Always back up locally in leads queue
         try {
           const localLeads = JSON.parse(localStorage.getItem('marvin_voucher_sheet_leads') || '[]');
           localLeads.push({
             email: leadEmail,
             code: assignedCode,
+            deviceId: deviceId,
+            ip: clientIp,
             claimedAt: new Date().toLocaleString(),
             userAgent: navigator.userAgent
           });
@@ -678,11 +707,11 @@ document.addEventListener('DOMContentLoaded', () => {
           console.warn('LocalStorage leads backup error:', e);
         }
 
-        // 2. Dispatch to Google Apps Script Webhook
+        // 4. Dispatch to Google Apps Script Webhook
         const GOOGLE_SHEET_APPS_SCRIPT_URL = window.MARVIN_SHEET_WEBHOOK_URL || 'https://script.google.com/macros/s/AKfycbwRPWAvOC4RgtDwt6SFrvMqE9rEj-PSwYn4QPcx1NyEzSFPxOPF1ZXIq3loXNO8hE8KOQ/exec';
         if (GOOGLE_SHEET_APPS_SCRIPT_URL) {
           try {
-            const targetUrl = `${GOOGLE_SHEET_APPS_SCRIPT_URL}?email=${encodeURIComponent(leadEmail)}&code=${encodeURIComponent(assignedCode)}&source=Samsung+Voucher+Claim`;
+            const targetUrl = `${GOOGLE_SHEET_APPS_SCRIPT_URL}?email=${encodeURIComponent(leadEmail)}&code=${encodeURIComponent(assignedCode)}&deviceId=${encodeURIComponent(deviceId)}&ip=${encodeURIComponent(clientIp)}&source=Samsung+Voucher+Claim`;
             await fetch(targetUrl, {
               method: 'POST',
               mode: 'no-cors',
@@ -690,6 +719,8 @@ document.addEventListener('DOMContentLoaded', () => {
               body: JSON.stringify({
                 email: leadEmail,
                 code: assignedCode,
+                deviceId: deviceId,
+                ip: clientIp,
                 timestamp: new Date().toISOString(),
                 source: 'Samsung Voucher Claim'
               })
