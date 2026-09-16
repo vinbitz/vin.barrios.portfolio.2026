@@ -664,6 +664,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // Google Sheets Integration for Voucher Leads
       // Target Sheet: https://docs.google.com/spreadsheets/d/1jBXnXNKh64a_uGo7fcbCbU72CJt-0Uj7GM6PV4bLyxM/edit
       // --------------------------------------------------------------------------
+      const logVoucherToGoogleSheet = async (leadEmail, assignedCode) => {
         // 1. Retrieve or generate persistent Device ID
         const getDeviceId = () => {
           let devId = localStorage.getItem('marvin_device_uuid');
@@ -1187,30 +1188,30 @@ document.addEventListener('DOMContentLoaded', () => {
   const modeToggleBtn = document.getElementById('modeToggleBtn');
   const soundToggleBtn = document.getElementById('soundToggleBtn');
 
-  // Mode Controller: light or dark
-  let isDarkMode = false;
+  // Mode Controller: always query the actual DOM state to prevent desynchronization
+  const isBodyDark = () => document.body.classList.contains('dark-mode');
 
   const setPortfolioMode = (dark, animate = true) => {
-    isDarkMode = dark;
-
-    // Trigger flip audio effect
-    if (animate) {
-      playFlipSound(isDarkMode);
-    }
+    const isDark = (typeof dark === 'boolean') ? dark : !isBodyDark();
 
     // 1. Flip hero portrait card
     if (flipCard) {
-      flipCard.classList.toggle('is-flipped', isDarkMode);
+      flipCard.classList.toggle('is-flipped', isDark);
     }
 
     // 2. Toggle global dark mode on body
-    document.body.classList.toggle('dark-mode', isDarkMode);
+    document.body.classList.toggle('dark-mode', isDark);
 
-    // 3. Update mode toggle button in navbar
+    // 3. Trigger flip audio effect
+    if (animate) {
+      playFlipSound(isDark);
+    }
+
+    // 4. Update mode toggle button in navbar
     if (modeToggleBtn) {
       const icon = modeToggleBtn.querySelector('.mode-btn-icon');
       const text = modeToggleBtn.querySelector('.mode-btn-text');
-      if (isDarkMode) {
+      if (isDark) {
         if (icon) icon.textContent = '☀️';
         if (text) text.textContent = 'Creator Mode';
         modeToggleBtn.title = 'Switch to Creator Mode';
@@ -1221,7 +1222,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    // 4. Refresh ScrollTrigger & Trigger stats counter animations
+    // 5. Refresh ScrollTrigger & Trigger stats counter animations
     if (window.ScrollTrigger) {
       setTimeout(() => ScrollTrigger.refresh(), 120);
     }
@@ -1231,7 +1232,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     try {
-      localStorage.setItem('marvin_dark_mode', isDarkMode ? 'true' : 'false');
+      localStorage.setItem('marvin_dark_mode', isDark ? 'true' : 'false');
     } catch (e) {
       console.warn(e);
     }
@@ -1272,17 +1273,40 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Flip card click handler (clicking anywhere on card or flip icon pill)
   if (flipCard) {
-    flipCard.addEventListener('click', (e) => {
-      e.preventDefault();
-      if (e.target.closest('a') || e.target.closest('button')) return;
-      setPortfolioMode(!isDarkMode);
+    let isFlipping = false;
+    const triggerFlip = (e) => {
+      if (e) {
+        if (e.target.closest('a') || e.target.closest('button')) return;
+      }
+      if (isFlipping) return;
+      isFlipping = true;
+      setPortfolioMode(!isBodyDark());
+      setTimeout(() => { isFlipping = false; }, 350);
+    };
+
+    flipCard.addEventListener('click', triggerFlip);
+
+    // Support keyboard navigation (Enter & Space)
+    flipCard.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        triggerFlip(e);
+      }
+    });
+
+    // Explicit binding to flip hint badges on both faces
+    flipCard.querySelectorAll('.flip-hint-pill').forEach(pill => {
+      pill.addEventListener('click', (e) => {
+        e.stopPropagation();
+        triggerFlip(e);
+      });
     });
   }
 
   // Navbar Mode Button click handler
   if (modeToggleBtn) {
     modeToggleBtn.addEventListener('click', () => {
-      setPortfolioMode(!isDarkMode);
+      setPortfolioMode(!isBodyDark());
     });
   }
 

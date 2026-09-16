@@ -15,12 +15,12 @@
   <meta name="theme-color" content="#0d1117">
   
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=20260917-v4">
   
   <!-- GSAP & ScrollTrigger -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
-  <script src="main.js?v=20260917-v3" defer></script>
+  <script src="main.js?v=20260917-v4" defer></script>
 </head>
 <body>
 
@@ -174,7 +174,7 @@
 
           <!-- Right: Interactive 3D Flip Portrait (Click to Flip & Glow Dark Mode) -->
           <div class="hero-portrait-wrapper">
-            <div class="flip-card-container" id="portraitFlipCard" title="Click to flip &amp; enter glow dark mode!">
+            <div class="flip-card-container" id="portraitFlipCard" role="button" tabindex="0" aria-label="Toggle 3D portrait and Executive Mode" title="Click to flip &amp; enter Executive Mode!">
               <div class="flip-card-inner">
                 
                 <!-- FRONT FACE: Classic Light Mode with Denim Portrait -->
@@ -185,7 +185,7 @@
                   <div class="hud-bracket hud-br"></div>
                   
                   <div class="flip-card-media">
-                    <img src="assets/portrait.png" alt="Marvin Barrios — Tech Marketer" class="hero-portrait-img">
+                    <img src="assets/portrait.png" alt="Marvin Barrios — Tech Marketer" class="hero-portrait-img" draggable="false">
                     <div class="flip-hint-pill">
                       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M21 12a9 9 0 1 1-9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/>
@@ -206,7 +206,7 @@
                   <div class="hud-bracket hud-br bracket-glow"></div>
 
                   <div class="flip-card-media">
-                    <img src="assets/portrait-dark.jpg" alt="Marvin Barrios — Executive &amp; Strategist" class="hero-portrait-img dark-img">
+                    <img src="assets/portrait-dark.jpg" alt="Marvin Barrios — Executive &amp; Strategist" class="hero-portrait-img dark-img" draggable="false">
                     
                     <!-- Glow in the dark aurora overlay -->
                     <div class="glow-aurora-overlay" aria-hidden="true"></div>
