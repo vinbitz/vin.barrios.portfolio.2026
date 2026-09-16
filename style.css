@@ -1349,15 +1349,21 @@ body.dark-mode .branding-card:hover {
   box-shadow: 0 0 24px rgba(26, 213, 217, 0.3), 12px 14px 0px rgba(0, 0, 0, 0.95);
 }
 body.dark-mode .branding-card-title { color: #FFFFFF; }
-body.dark-mode .branding-card-desc { color: #94A3B8; }
-body.dark-mode .branding-role-badge { color: #C084FC; }
+body.dark-mode .branding-card-desc { color: #CBD5E1; font-size: 0.96rem; line-height: 1.65; }
+body.dark-mode .branding-role-badge { color: #D8B4FE; font-weight: 700; }
 body.dark-mode .branding-highlights {
-  background: #131824;
-  border-color: rgba(255, 255, 255, 0.1);
-  color: #CBD5E1;
+  background: #161D2E !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.16) !important;
+  border-radius: var(--radius-md);
+}
+body.dark-mode .branding-highlight-item {
+  color: #E2E8F0 !important;
+  font-size: 0.92rem !important;
+  line-height: 1.55 !important;
 }
 body.dark-mode .branding-highlight-item strong {
-  color: #F8FAFC !important;
+  color: #38BDF8 !important;
+  font-weight: 800 !important;
 }
 body.dark-mode .btn-branding-link {
   background: #131824;
@@ -2043,23 +2049,28 @@ body.dark-mode .modal-close:hover { color: #FFFFFF; }
 }
 
 .branding-highlights {
-  background: #F8F9FB;
-  border: 1.5px solid var(--border-light);
+  background: #F8FAFC;
+  border: 1.5px solid #CBD5E1;
   border-radius: var(--radius-md);
   padding: 16px 18px;
   margin-bottom: 24px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
 }
 
 .branding-highlight-item {
   display: flex;
   align-items: flex-start;
   gap: 10px;
-  font-size: 0.88rem;
-  line-height: 1.5;
-  color: var(--text-dark);
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: #1E293B;
+}
+
+.branding-highlight-item strong {
+  color: #0F172A;
+  font-weight: 800;
 }
 
 .highlight-bullet {
