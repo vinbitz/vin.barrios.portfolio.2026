@@ -671,6 +671,24 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       document.body.removeChild(tempInput);
     };
+
+    // Auto-switch to Creator Mode if user clicks any link to #vouchers while in Executive Mode
+    document.querySelectorAll('a[href="#vouchers"]').forEach(link => {
+      link.addEventListener('click', (e) => {
+        if (document.body.classList.contains('dark-mode')) {
+          e.preventDefault();
+          if (typeof setPortfolioMode === 'function') {
+            setPortfolioMode(false);
+          }
+          setTimeout(() => {
+            const voucherSec = document.getElementById('vouchers');
+            if (voucherSec) {
+              voucherSec.scrollIntoView({ behavior: 'smooth' });
+            }
+          }, 150);
+        }
+      });
+    });
   }
 
   // 10. Recommendations Carousel
