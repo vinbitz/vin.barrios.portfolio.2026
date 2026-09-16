@@ -656,13 +656,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // 2. Dispatch to Google Apps Script Webhook
-        const GOOGLE_SHEET_APPS_SCRIPT_URL = window.MARVIN_SHEET_WEBHOOK_URL || 'https://script.google.com/macros/s/AKfycbwYyY7-REPLACE_WITH_YOUR_DEPLOYMENT_ID/exec';
-        if (GOOGLE_SHEET_APPS_SCRIPT_URL && !GOOGLE_SHEET_APPS_SCRIPT_URL.includes('REPLACE_WITH_YOUR_DEPLOYMENT_ID')) {
+        const GOOGLE_SHEET_APPS_SCRIPT_URL = window.MARVIN_SHEET_WEBHOOK_URL || 'https://script.google.com/macros/s/AKfycbyMzf4a4Swc8p7qTOpcgubg01BweTg2LLjN7DuC2iDg3zttRkrZV5osUkL-RUBFIuT9Rg/exec';
+        if (GOOGLE_SHEET_APPS_SCRIPT_URL) {
           try {
-            await fetch(GOOGLE_SHEET_APPS_SCRIPT_URL, {
+            const targetUrl = `${GOOGLE_SHEET_APPS_SCRIPT_URL}?email=${encodeURIComponent(leadEmail)}&code=${encodeURIComponent(assignedCode)}&source=Samsung+Voucher+Claim`;
+            await fetch(targetUrl, {
               method: 'POST',
               mode: 'no-cors',
-              headers: { 'Content-Type': 'application/json' },
+              headers: { 'Content-Type': 'text/plain;charset=utf-8' },
               body: JSON.stringify({
                 email: leadEmail,
                 code: assignedCode,
