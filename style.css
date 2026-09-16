@@ -258,14 +258,14 @@ body {
 .canva-box-purple {
   border: 2px solid var(--purple-main);
   background: rgba(140, 82, 255, 0.08);
-  box-shadow: 0 4px 16px rgba(140, 82, 255, 0.15);
+  box-shadow: 0 4px 18px rgba(140, 82, 255, 0.25), 0 0 10px rgba(140, 82, 255, 0.15);
   animation: none;
 }
 
 .canva-box-blue {
   border: 2px solid var(--blue-main);
   background: rgba(16, 158, 242, 0.08);
-  box-shadow: 0 4px 16px rgba(16, 158, 242, 0.15);
+  box-shadow: 0 4px 18px rgba(16, 158, 242, 0.25), 0 0 10px rgba(16, 158, 242, 0.15);
   animation: none;
 }
 
@@ -281,13 +281,27 @@ body {
 
 .canva-drag-wrapper:hover .canva-box {
   filter: brightness(1.08);
-  box-shadow: 0 10px 28px rgba(234, 56, 41, 0.25);
+}
+
+.canva-drag-wrapper:hover .canva-box-purple {
+  box-shadow: 0 10px 28px rgba(140, 82, 255, 0.45), 0 0 22px rgba(140, 82, 255, 0.3);
+}
+
+.canva-drag-wrapper:hover .canva-box-blue {
+  box-shadow: 0 10px 28px rgba(16, 158, 242, 0.45), 0 0 22px rgba(16, 158, 242, 0.3);
 }
 
 .canva-drag-wrapper.is-dragging .canva-box {
   animation-play-state: paused;
-  box-shadow: 0 18px 40px rgba(234, 56, 41, 0.35);
   transform: scale(1.12);
+}
+
+.canva-drag-wrapper.is-dragging .canva-box-purple {
+  box-shadow: 0 18px 42px rgba(140, 82, 255, 0.6), 0 0 32px rgba(140, 82, 255, 0.4);
+}
+
+.canva-drag-wrapper.is-dragging .canva-box-blue {
+  box-shadow: 0 18px 42px rgba(16, 158, 242, 0.6), 0 0 32px rgba(16, 158, 242, 0.4);
 }
 
 @keyframes floatPurple {
@@ -367,8 +381,22 @@ body {
   50% { transform: translateX(-50%) translateY(-4px); }
 }
 
-.text-purple { color: var(--purple-main); font-style: italic; font-weight: 700; }
-.text-blue { color: var(--blue-main); font-style: italic; font-weight: 700; }
+.text-purple {
+  color: var(--purple-main);
+  font-style: italic;
+  font-weight: 700;
+  text-shadow: 0 0 16px rgba(140, 82, 255, 0.35);
+  transition: var(--transition-smooth);
+}
+
+.text-blue {
+  color: var(--blue-main);
+  font-style: italic;
+  font-weight: 700;
+  text-shadow: 0 0 16px rgba(16, 158, 242, 0.35);
+  transition: var(--transition-smooth);
+}
+
 .text-red { color: var(--canva-red, #EA3829); font-style: italic; font-weight: 700; }
 
 /* ==========================================================================
@@ -1094,6 +1122,111 @@ body.dark-mode .btn-outline {
 body.dark-mode .btn-outline:hover {
   background: #FFFFFF;
   color: #07090E;
+}
+
+/* Executive Mode - Moving Gradient & Luminescent Glow on Marvin & Marketer */
+@keyframes execMovingGradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+body.dark-mode .canva-box-purple {
+  border-color: #C084FC;
+  background: rgba(140, 82, 255, 0.18);
+  box-shadow: 0 0 28px rgba(192, 132, 252, 0.45), 0 4px 20px rgba(140, 82, 255, 0.3), inset 0 0 14px rgba(192, 132, 252, 0.18);
+}
+
+body.dark-mode .canva-box-blue {
+  border-color: #38BDF8;
+  background: rgba(16, 158, 242, 0.18);
+  box-shadow: 0 0 28px rgba(56, 189, 248, 0.45), 0 4px 20px rgba(16, 158, 242, 0.3), inset 0 0 14px rgba(56, 189, 248, 0.18);
+}
+
+body.dark-mode .canva-drag-wrapper:hover .canva-box-purple {
+  box-shadow: 0 0 42px rgba(192, 132, 252, 0.75), 0 10px 32px rgba(140, 82, 255, 0.55);
+}
+
+body.dark-mode .canva-drag-wrapper:hover .canva-box-blue {
+  box-shadow: 0 0 42px rgba(56, 189, 248, 0.75), 0 10px 32px rgba(16, 158, 242, 0.55);
+}
+
+body.dark-mode .canva-drag-wrapper.is-dragging .canva-box-purple {
+  box-shadow: 0 0 55px rgba(192, 132, 252, 0.9), 0 18px 48px rgba(140, 82, 255, 0.65);
+}
+
+body.dark-mode .canva-drag-wrapper.is-dragging .canva-box-blue {
+  box-shadow: 0 0 55px rgba(56, 189, 248, 0.9), 0 18px 48px rgba(16, 158, 242, 0.65);
+}
+
+body.dark-mode .text-purple {
+  display: inline-block;
+  background: linear-gradient(
+    115deg,
+    #C084FC 0%,
+    #F472B6 25%,
+    #8C52FF 50%,
+    #E879F9 75%,
+    #C084FC 100%
+  );
+  background-size: 250% 250%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: execMovingGradient 4s ease infinite;
+  filter: drop-shadow(0 0 14px rgba(192, 132, 252, 0.75)) drop-shadow(0 0 28px rgba(140, 82, 255, 0.4));
+}
+
+body.dark-mode .text-blue {
+  display: inline-block;
+  background: linear-gradient(
+    115deg,
+    #38BDF8 0%,
+    #22D3EE 25%,
+    #109EF2 50%,
+    #818CF8 75%,
+    #38BDF8 100%
+  );
+  background-size: 250% 250%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: execMovingGradient 4s ease infinite;
+  filter: drop-shadow(0 0 14px rgba(56, 189, 248, 0.75)) drop-shadow(0 0 28px rgba(16, 158, 242, 0.4));
+}
+
+body.dark-mode .canva-box-purple .canva-handle {
+  background: #C084FC;
+  border-color: #FFFFFF;
+  box-shadow: 0 0 8px rgba(192, 132, 252, 0.9);
+}
+
+body.dark-mode .canva-box-blue .canva-handle {
+  background: #38BDF8;
+  border-color: #FFFFFF;
+  box-shadow: 0 0 8px rgba(56, 189, 248, 0.9);
+}
+
+body.dark-mode .canva-box-purple .canva-handle-top {
+  border-color: #C084FC;
+  box-shadow: 0 0 8px rgba(192, 132, 252, 0.9);
+}
+
+body.dark-mode .canva-box-purple .canva-handle-line {
+  background: #C084FC;
+}
+
+body.dark-mode .canva-box-blue .canva-handle-top {
+  border-color: #38BDF8;
+  box-shadow: 0 0 8px rgba(56, 189, 248, 0.9);
+}
+
+body.dark-mode .canva-box-blue .canva-handle-line {
+  background: #38BDF8;
 }
 
 /* Wireframe Badges in Dark Mode */
