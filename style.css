@@ -4866,6 +4866,14 @@ body.dark-mode .samsung-editorial-block {
   transition: all 0.22s ease;
 }
 
+.btn-speaking-linkedin svg {
+  width: 16px;
+  height: 16px;
+  min-width: 16px;
+  flex-shrink: 0;
+  display: block;
+}
+
 .btn-speaking-linkedin:hover {
   background: #0A66C2;
   color: #FFFFFF;
