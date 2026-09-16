@@ -3770,6 +3770,11 @@ body.dark-mode .as-seen-on-section {
   display: block;
 }
 
+.ticker-logo-img.logo-img-square {
+  max-height: 52px;
+  transform: scale(1.18);
+}
+
 body.dark-mode .ticker-logo-card {
   background: #11141F;
   border-color: rgba(255, 255, 255, 0.12);
