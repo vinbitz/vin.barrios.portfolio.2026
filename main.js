@@ -318,7 +318,7 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     'reel-s26': {
       title: 'Galaxy S26 Ultra · Flagship Galaxy AI',
-      subtitle: 'Samsung SEA&O Student Ambassador · @marvinbarrios',
+      subtitle: 'Samsung Members Star · @marvinbarrios',
       body: `
         <div class="modal-reel-container">
           <iframe src="https://www.instagram.com/reel/DVMNTDLEmyO/embed/" class="modal-reel-iframe" frameborder="0" scrolling="no" allowtransparency="true" allow="encrypted-media;"></iframe>
@@ -335,7 +335,7 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     'reel-s25': {
       title: 'Galaxy S25 · Nightography & Performance',
-      subtitle: 'Samsung SEA&O Student Ambassador · @marvinbarrios',
+      subtitle: 'Samsung Members Star · @marvinbarrios',
       body: `
         <div class="modal-reel-container">
           <iframe src="https://www.instagram.com/reel/DFg3_2Wy3-r/embed/" class="modal-reel-iframe" frameborder="0" scrolling="no" allowtransparency="true" allow="encrypted-media;"></iframe>
@@ -352,7 +352,7 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     'reel-fold8': {
       title: 'Galaxy Z Fold 8 · Dual-Screen Multitasking',
-      subtitle: 'Samsung SEA&O Student Ambassador · @marvinbarrios',
+      subtitle: 'Samsung Members Star · @marvinbarrios',
       body: `
         <div class="modal-reel-container">
           <iframe src="https://www.instagram.com/reel/DbGNbIZTv2t/embed/" class="modal-reel-iframe" frameborder="0" scrolling="no" allowtransparency="true" allow="encrypted-media;"></iframe>
@@ -369,7 +369,7 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     'reel-fold7': {
       title: 'Galaxy Z Fold 7 · FlexCam & Portability',
-      subtitle: 'Samsung SEA&O Student Ambassador · @marvinbarrios',
+      subtitle: 'Samsung Members Star · @marvinbarrios',
       body: `
         <div class="modal-reel-container">
           <iframe src="https://www.instagram.com/reel/DL4_bQ3ybpK/embed/" class="modal-reel-iframe" frameborder="0" scrolling="no" allowtransparency="true" allow="encrypted-media;"></iframe>
@@ -386,7 +386,7 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     'reel-a57': {
       title: 'Galaxy A57 / A37 · Awesome Super AMOLED',
-      subtitle: 'Samsung SEA&O Student Ambassador · @marvinbarrios',
+      subtitle: 'Samsung Members Star · @marvinbarrios',
       body: `
         <div class="modal-reel-container">
           <iframe src="https://www.instagram.com/reel/DWTwFfgEveS/embed/" class="modal-reel-iframe" frameborder="0" scrolling="no" allowtransparency="true" allow="encrypted-media;"></iframe>
@@ -403,7 +403,7 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     'reel-a56': {
       title: 'Galaxy A56 / A36 · 2-Day Battery Life & Daily Routine',
-      subtitle: 'Samsung SEA&O Student Ambassador · @marvinbarrios',
+      subtitle: 'Samsung Members Star · @marvinbarrios',
       body: `
         <div class="modal-reel-container">
           <iframe src="https://www.instagram.com/reel/DGrM0MKTo1N/embed/" class="modal-reel-iframe" frameborder="0" scrolling="no" allowtransparency="true" allow="encrypted-media;"></iframe>
@@ -420,7 +420,7 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     'reel-creator': {
       title: 'Campus Life & Behind-The-Scenes',
-      subtitle: 'Samsung SEA&O Student Ambassador · @marvinbarrios',
+      subtitle: 'Samsung Members Star · @marvinbarrios',
       body: `
         <div class="modal-reel-container">
           <iframe src="https://www.instagram.com/reel/DYuFCt6yIgx/embed/" class="modal-reel-iframe" frameborder="0" scrolling="no" allowtransparency="true" allow="encrypted-media;"></iframe>
@@ -500,6 +500,178 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
+
+  // 9B. Samsung Single-Tab Voucher Engine
+  const voucherFormBox = document.getElementById('voucherFormBox');
+  const voucherEmailInput = document.getElementById('voucherEmailInput');
+  const btnClaimVoucher = document.getElementById('btnClaimVoucher');
+  const voucherRevealedBox = document.getElementById('voucherRevealedBox');
+  const revealedCodeDisplay = document.getElementById('revealedCodeDisplay');
+  const btnCopyRevealed = document.getElementById('btnCopyRevealed');
+  const copyBtnText = document.getElementById('copyBtnText');
+  const revealedSubnote = document.getElementById('revealedSubnote');
+  const vouchersRemainingCount = document.getElementById('vouchersRemainingCount');
+
+  if (btnClaimVoucher && voucherEmailInput) {
+    let voucherCodes = [];
+    const TOTAL_VOUCHERS = 1000;
+
+    // Fetch full 1,000 codes from json
+    fetch('assets/data/samsung-vouchers.json')
+      .then(res => res.json())
+      .then(data => {
+        if (Array.isArray(data) && data.length > 0) {
+          voucherCodes = data;
+        }
+      })
+      .catch(err => {
+        console.warn('Could not load samsung-vouchers.json, using fallback codes:', err);
+      });
+
+    // Check if code was already claimed on this device
+    const claimedCode = localStorage.getItem('marvin_samsung_claimed_code');
+    const claimedEmail = localStorage.getItem('marvin_samsung_claimed_email');
+
+    const updateRemainingDisplay = () => {
+      if (!vouchersRemainingCount) return;
+      const claimedOffset = claimedCode ? 1 : 0;
+      const remaining = Math.max(0, TOTAL_VOUCHERS - claimedOffset);
+      vouchersRemainingCount.textContent = remaining;
+    };
+
+    if (claimedCode) {
+      if (voucherEmailInput) {
+        voucherEmailInput.value = claimedEmail || 'Claimed on this device';
+        voucherEmailInput.disabled = true;
+      }
+      btnClaimVoucher.disabled = true;
+      btnClaimVoucher.textContent = 'Claimed on This Device ✓';
+      btnClaimVoucher.style.opacity = '0.7';
+      btnClaimVoucher.style.cursor = 'default';
+
+      if (voucherRevealedBox && revealedCodeDisplay) {
+        voucherRevealedBox.style.display = 'block';
+        revealedCodeDisplay.textContent = claimedCode;
+        if (revealedSubnote && claimedEmail) {
+          revealedSubnote.textContent = `A copy of your code was claimed for ${claimedEmail}. Use it at checkout on samsung.com!`;
+        }
+      }
+    }
+
+    updateRemainingDisplay();
+
+    // Claim Action
+    btnClaimVoucher.addEventListener('click', () => {
+      const email = voucherEmailInput.value.trim();
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      if (!email || !emailRegex.test(email)) {
+        voucherEmailInput.focus();
+        voucherEmailInput.style.borderColor = '#EA3829';
+        voucherEmailInput.style.boxShadow = '0 0 0 3px rgba(234, 56, 41, 0.2)';
+        setTimeout(() => {
+          voucherEmailInput.style.borderColor = '';
+          voucherEmailInput.style.boxShadow = '';
+        }, 2200);
+        return;
+      }
+
+      // Already claimed check
+      if (localStorage.getItem('marvin_samsung_claimed_code')) {
+        return;
+      }
+
+      // Pick next available code
+      let selectedCode = '';
+      if (voucherCodes.length > 0) {
+        const randIdx = Math.floor(Math.random() * voucherCodes.length);
+        selectedCode = voucherCodes[randIdx];
+      } else {
+        const randId = Math.floor(1000 + Math.random() * 9000);
+        selectedCode = `CRPSTARSMBPC202410-${randId}`;
+      }
+
+      // Save to localStorage (1 per device)
+      try {
+        localStorage.setItem('marvin_samsung_claimed_code', selectedCode);
+        localStorage.setItem('marvin_samsung_claimed_email', email);
+        localStorage.setItem('marvin_samsung_claimed_time', new Date().toISOString());
+      } catch (e) {
+        console.warn('LocalStorage error:', e);
+      }
+
+      // Update UI
+      voucherEmailInput.disabled = true;
+      btnClaimVoucher.disabled = true;
+      btnClaimVoucher.textContent = 'Claimed on This Device ✓';
+      btnClaimVoucher.style.opacity = '0.7';
+      btnClaimVoucher.style.cursor = 'default';
+
+      if (voucherRevealedBox && revealedCodeDisplay) {
+        voucherRevealedBox.style.display = 'block';
+        revealedCodeDisplay.textContent = selectedCode;
+        if (revealedSubnote) {
+          revealedSubnote.textContent = `Voucher code unlocked for ${email}! Valid exclusively on samsung.com at checkout.`;
+        }
+      }
+
+      updateRemainingDisplay();
+
+      // Attempt automatic copy to clipboard
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(selectedCode).then(() => {
+          if (copyBtnText) {
+            copyBtnText.textContent = 'Copied! ✓';
+            setTimeout(() => {
+              copyBtnText.textContent = 'Copy Code';
+            }, 2500);
+          }
+        }).catch(() => {});
+      }
+    });
+
+    // Copy Revealed Code Button
+    if (btnCopyRevealed) {
+      btnCopyRevealed.addEventListener('click', () => {
+        const codeToCopy = (revealedCodeDisplay && revealedCodeDisplay.textContent) || claimedCode || '';
+        if (!codeToCopy) return;
+
+        const handleSuccess = () => {
+          if (copyBtnText) {
+            const originalText = copyBtnText.textContent;
+            copyBtnText.textContent = 'Copied! ✓';
+            btnCopyRevealed.style.background = '#00B074';
+            setTimeout(() => {
+              copyBtnText.textContent = originalText;
+              btnCopyRevealed.style.background = '';
+            }, 2000);
+          }
+        };
+
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(codeToCopy).then(handleSuccess).catch(() => {
+            fallbackCopy(codeToCopy, handleSuccess);
+          });
+        } else {
+          fallbackCopy(codeToCopy, handleSuccess);
+        }
+      });
+    }
+
+    const fallbackCopy = (text, callback) => {
+      const tempInput = document.createElement('input');
+      tempInput.value = text;
+      document.body.appendChild(tempInput);
+      tempInput.select();
+      try {
+        document.execCommand('copy');
+        if (callback) callback();
+      } catch (e) {
+        console.warn('Copy failed:', e);
+      }
+      document.body.removeChild(tempInput);
+    };
+  }
 
   // 10. Recommendations Carousel
   const recCards = document.querySelectorAll('.rec-card');
