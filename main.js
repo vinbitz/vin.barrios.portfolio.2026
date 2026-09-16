@@ -596,6 +596,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       const remaining = Math.max(0, TOTAL_VOUCHERS - liveClaimedCount);
       vouchersRemainingCount.textContent = remaining;
+      console.log('[Vouchers] Synced with Google Sheet. Remaining:', remaining);
     };
 
     if (claimedCode) {
