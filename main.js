@@ -186,7 +186,14 @@ document.addEventListener('DOMContentLoaded', () => {
   if (logoDot) {
     let toggle = false;
     setInterval(() => {
-      logoDot.style.color = toggle ? '#8C52FF' : '#109EF2';
+      const isDark = document.body.classList.contains('dark-mode');
+      if (isDark) {
+        logoDot.style.backgroundColor = toggle ? '#C084FC' : '#38BDF8';
+        logoDot.style.boxShadow = toggle ? '0 0 12px #C084FC' : '0 0 12px #38BDF8';
+      } else {
+        logoDot.style.backgroundColor = toggle ? '#8C52FF' : '#109EF2';
+        logoDot.style.boxShadow = toggle ? '0 0 10px #8C52FF' : '0 0 10px #109EF2';
+      }
       toggle = !toggle;
     }, 2400);
   }

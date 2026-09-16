@@ -125,6 +125,8 @@ body {
   letter-spacing: -0.05em;
   display: inline-flex;
   align-items: baseline;
+  line-height: 1;
+  overflow: visible;
   transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -133,11 +135,18 @@ body {
 }
 
 .clouted-brand .dot {
-  color: var(--purple-main);
   display: inline-block;
-  font-size: 2rem;
+  width: 8px;
+  height: 8px;
+  background-color: var(--purple-main);
+  border-radius: 50%;
+  margin-left: 3px;
+  margin-bottom: 3px;
+  vertical-align: baseline;
+  font-size: 0;
   line-height: 0;
-  margin-left: 2px;
+  box-shadow: 0 0 10px rgba(140, 82, 255, 0.6);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .clouted-nav-links {
@@ -1096,7 +1105,14 @@ body.dark-mode .clouted-navbar {
   box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6), 0 0 20px rgba(140, 82, 255, 0.2);
 }
 
-body.dark-mode .clouted-brand { color: #FFFFFF; }
+body.dark-mode .clouted-brand {
+  color: #FFFFFF;
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+}
+body.dark-mode .clouted-brand .dot {
+  background-color: #38BDF8;
+  box-shadow: 0 0 12px #38BDF8, 0 0 20px rgba(56, 189, 248, 0.6);
+}
 body.dark-mode .clouted-nav-link { color: #CBD5E1; }
 body.dark-mode .clouted-nav-link:hover { color: #38BDF8; }
 
