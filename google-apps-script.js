@@ -3,32 +3,19 @@
  * Attached to Google Sheet:
  * https://docs.google.com/spreadsheets/d/1jBXnXNKh64a_uGo7fcbCbU72CJt-0Uj7GM6PV4bLyxM/edit
  *
- * HOW TO ACTIVATE IN 60 SECONDS:
- * 1. Open your Google Sheet: https://docs.google.com/spreadsheets/d/1jBXnXNKh64a_uGo7fcbCbU72CJt-0Uj7GM6PV4bLyxM/edit
- * 2. Click on the top menu: Extensions -> Apps Script
- * 3. Delete any code in the editor, copy and paste this entire file, and click Save (Floppy disk icon).
- * 4. Click the blue "Deploy" button at top-right -> select "New deployment".
- * 5. Click the gear icon next to "Select type" and choose "Web app".
- * 6. Set Description: "Portfolio Voucher Logger"
- * 7. Set "Execute as": "Me"
- * 8. Set "Who has access": "Anyone"  <--- (IMPORTANT: this allows your website to submit emails)
- * 9. Click "Deploy" and click "Authorize access" (choose your Google account and click Advanced -> Go to Untitled project).
- * 10. Copy your "Web app URL" (looks like https://script.google.com/macros/s/AKfycb.../exec).
- * 11. Open `main.js` (or set `window.MARVIN_SHEET_WEBHOOK_URL`) and paste your URL!
+ * WHAT THIS SCRIPT DOES:
+ * 1. Matches the voucher code in Column C ("Voucher Code") and fills in
+ *    Column A ("Timestamp") and Column B ("Email") directly on that code's row!
+ * 2. Also logs every claim into a clean, dedicated "Claimed Leads" tab so
+ *    you can see all your emails right at the top without scrolling through 1,000 rows.
  */
 
 function doPost(e) {
   try {
     var ss = SpreadsheetApp.getActiveSpreadsheet();
-    var sheet = ss.getActiveSheet();
+    var mainSheet = ss.getSheetByName("Sheet1") || ss.getSheets()[0];
 
-    // Automatically initialize header columns on empty sheets
-    if (sheet.getLastRow() === 0) {
-      sheet.appendRow(["Timestamp", "Email", "Voucher Code", "Source"]);
-      sheet.getRange("A1:D1").setFontWeight("bold").setBackground("#EA3829").setFontColor("#FFFFFF");
-      sheet.setFrozenRows(1);
-    }
-
+    // Parse incoming webhook payload
     var data = {};
     if (e && e.postData && e.postData.contents) {
       try {
@@ -40,19 +27,60 @@ function doPost(e) {
       data = e.parameter;
     }
 
-    var timestamp = data.timestamp || new Date().toLocaleString("en-US", { timeZone: "Asia/Manila" });
-    var email = data.email || "No email";
-    var code = data.code || "N/A";
+    var timestamp = new Date().toLocaleString("en-US", { timeZone: "Asia/Manila" });
+    var email = (data.email || "").trim();
+    var code = (data.code || "").trim();
     var source = data.source || "Samsung Voucher Claim";
 
-    // Append new row to Google Sheet
-    sheet.appendRow([timestamp, email, code, source]);
+    var matchedRow = -1;
 
-    return ContentService.createTextOutput(JSON.stringify({ status: "success", email: email, code: code }))
-      .setMimeType(ContentService.MimeType.JSON);
+    // 1. Find matching code in Column C (Voucher Code) of the main sheet
+    if (code && mainSheet.getLastRow() > 1) {
+      var lastRow = mainSheet.getLastRow();
+      // Read Column C values
+      var codeValues = mainSheet.getRange(2, 3, lastRow - 1, 1).getValues();
+      for (var i = 0; i < codeValues.length; i++) {
+        if (codeValues[i][0] && codeValues[i][0].toString().trim() === code) {
+          matchedRow = i + 2; // offset for 1-based index and header
+          break;
+        }
+      }
+    }
+
+    // 2. If code matched in Column C, update Columns A & B on that exact row!
+    if (matchedRow > 0) {
+      mainSheet.getRange(matchedRow, 1).setValue(timestamp); // Col A: Timestamp
+      mainSheet.getRange(matchedRow, 2).setValue(email);     // Col B: Email
+      if (source) {
+        mainSheet.getRange(matchedRow, 4).setValue(source);  // Col D: Source/Device
+      }
+    } else {
+      // Fallback: if code not pre-listed, append to bottom
+      mainSheet.appendRow([timestamp, email, code, source]);
+    }
+
+    // 3. Also log to a dedicated "Claims Log" tab for instant viewing at the top
+    var logSheet = ss.getSheetByName("Claims Log");
+    if (!logSheet) {
+      logSheet = ss.insertSheet("Claims Log", 0); // Put it as the first tab!
+      logSheet.appendRow(["Timestamp (Manila)", "Email Address", "Voucher Code Claimed", "Source"]);
+      logSheet.getRange("A1:D1").setFontWeight("bold").setBackground("#0D1117").setFontColor("#F59E0B");
+      logSheet.setFrozenRows(1);
+    }
+    logSheet.appendRow([timestamp, email, code, source]);
+
+    return ContentService.createTextOutput(JSON.stringify({
+      status: "success",
+      matchedRow: matchedRow,
+      email: email,
+      code: code
+    })).setMimeType(ContentService.MimeType.JSON);
+
   } catch (err) {
-    return ContentService.createTextOutput(JSON.stringify({ status: "error", message: err.toString() }))
-      .setMimeType(ContentService.MimeType.JSON);
+    return ContentService.createTextOutput(JSON.stringify({
+      status: "error",
+      message: err.toString()
+    })).setMimeType(ContentService.MimeType.JSON);
   }
 }
 
