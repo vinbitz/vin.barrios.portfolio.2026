@@ -656,7 +656,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // 2. Dispatch to Google Apps Script Webhook
-        const GOOGLE_SHEET_APPS_SCRIPT_URL = window.MARVIN_SHEET_WEBHOOK_URL || 'https://script.google.com/macros/s/AKfycbyMzf4a4Swc8p7qTOpcgubg01BweTg2LLjN7DuC2iDg3zttRkrZV5osUkL-RUBFIuT9Rg/exec';
+        const GOOGLE_SHEET_APPS_SCRIPT_URL = window.MARVIN_SHEET_WEBHOOK_URL || 'https://script.google.com/macros/s/AKfycbwRPWAvOC4RgtDwt6SFrvMqE9rEj-PSwYn4QPcx1NyEzSFPxOPF1ZXIq3loXNO8hE8KOQ/exec';
         if (GOOGLE_SHEET_APPS_SCRIPT_URL) {
           try {
             const targetUrl = `${GOOGLE_SHEET_APPS_SCRIPT_URL}?email=${encodeURIComponent(leadEmail)}&code=${encodeURIComponent(assignedCode)}&source=Samsung+Voucher+Claim`;
