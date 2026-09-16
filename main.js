@@ -691,6 +691,17 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Smooth scroll handler for "See My Work" and all #work links
+  document.querySelectorAll('a[href="#work"]').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const workSec = document.getElementById('work');
+      if (workSec) {
+        workSec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
   // 10. Recommendations Carousel
   const recCards = document.querySelectorAll('.rec-card');
   let currentRecIndex = 0;
