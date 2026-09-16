@@ -3704,19 +3704,34 @@ body.dark-mode .as-seen-on-section {
 
 .logos-ticker-track {
   display: flex;
-  gap: 28px;
   width: max-content;
-  animation: scrollLogosTicker 30s linear infinite;
+  animation: scrollLogosTicker 42s linear infinite;
   will-change: transform;
+  transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 .logos-ticker-track:hover {
   animation-play-state: paused;
 }
 
+.logos-ticker-group {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  padding-right: 28px;
+  flex-shrink: 0;
+}
+
 @keyframes scrollLogosTicker {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
 }
 
 .ticker-item {
