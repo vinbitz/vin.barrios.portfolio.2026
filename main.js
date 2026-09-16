@@ -636,6 +636,49 @@ document.addEventListener('DOMContentLoaded', () => {
         console.warn('LocalStorage error:', e);
       }
 
+      // --------------------------------------------------------------------------
+      // Google Sheets Integration for Voucher Leads
+      // Target Sheet: https://docs.google.com/spreadsheets/d/1jBXnXNKh64a_uGo7fcbCbU72CJt-0Uj7GM6PV4bLyxM/edit
+      // --------------------------------------------------------------------------
+      const logVoucherToGoogleSheet = async (leadEmail, assignedCode) => {
+        // 1. Always back up locally in leads queue
+        try {
+          const localLeads = JSON.parse(localStorage.getItem('marvin_voucher_sheet_leads') || '[]');
+          localLeads.push({
+            email: leadEmail,
+            code: assignedCode,
+            claimedAt: new Date().toLocaleString(),
+            userAgent: navigator.userAgent
+          });
+          localStorage.setItem('marvin_voucher_sheet_leads', JSON.stringify(localLeads));
+        } catch (e) {
+          console.warn('LocalStorage leads backup error:', e);
+        }
+
+        // 2. Dispatch to Google Apps Script Webhook
+        const GOOGLE_SHEET_APPS_SCRIPT_URL = window.MARVIN_SHEET_WEBHOOK_URL || 'https://script.google.com/macros/s/AKfycbwYyY7-REPLACE_WITH_YOUR_DEPLOYMENT_ID/exec';
+        if (GOOGLE_SHEET_APPS_SCRIPT_URL && !GOOGLE_SHEET_APPS_SCRIPT_URL.includes('REPLACE_WITH_YOUR_DEPLOYMENT_ID')) {
+          try {
+            await fetch(GOOGLE_SHEET_APPS_SCRIPT_URL, {
+              method: 'POST',
+              mode: 'no-cors',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                email: leadEmail,
+                code: assignedCode,
+                timestamp: new Date().toISOString(),
+                source: 'Samsung Voucher Claim'
+              })
+            });
+          } catch (err) {
+            console.warn('Google Sheets transmission error:', err);
+          }
+        }
+      };
+
+      // Record lead to Google Sheet
+      logVoucherToGoogleSheet(email, selectedCode);
+
       // Update UI
       voucherEmailInput.disabled = true;
       btnClaimVoucher.disabled = true;
