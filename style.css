@@ -1069,6 +1069,20 @@ body {
   transform: translateY(-1px);
 }
 
+.sound-toggle-btn {
+  padding: 7px 11px;
+  font-size: 0.88rem;
+  line-height: 1;
+  border-radius: var(--radius-pill);
+}
+
+.sound-toggle-btn.is-muted {
+  opacity: 0.6;
+  filter: grayscale(0.8);
+  border-color: rgba(140, 82, 255, 0.25);
+}
+
+
 /* Section Headers */
 .experience-header,
 .skills-header {

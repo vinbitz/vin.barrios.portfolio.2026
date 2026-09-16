@@ -803,7 +803,207 @@ document.addEventListener('DOMContentLoaded', () => {
     triggerRevealAnimation();
   }
 
-  // 12. Canva "Red Boom" Click Effect (from Visual Media slide)
+  // ==========================================================================
+  // 12. SOUND FX ENGINE (Web Audio API Synthesizer)
+  // Tactile audio feedback for Canva Red Boom clicks, 3D card flip & UI micro-interactions
+  // ==========================================================================
+  let audioCtx = null;
+  let isSoundMuted = false;
+  let lastRedClickTime = 0;
+
+  try {
+    const savedSound = localStorage.getItem('marvin_sound_muted');
+    if (savedSound === 'true') {
+      isSoundMuted = true;
+    }
+  } catch (e) {
+    console.warn(e);
+  }
+
+  const getAudioContext = () => {
+    if (isSoundMuted) return null;
+    if (!audioCtx) {
+      const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+      if (AudioContextClass) {
+        audioCtx = new AudioContextClass();
+      }
+    }
+    if (audioCtx && audioCtx.state === 'suspended') {
+      audioCtx.resume();
+    }
+    return audioCtx;
+  };
+
+  // 1. Tactile Comic "Red Boom" Bubble Pop Sound (Juicy frequency slide + crisp micro-snap)
+  const playRedClickSound = () => {
+    if (isSoundMuted) return;
+    const now = performance.now();
+    if (now - lastRedClickTime < 35) return;
+    lastRedClickTime = now;
+
+    const ctx = getAudioContext();
+    if (!ctx) return;
+
+    try {
+      const t = ctx.currentTime;
+      const jitter = (Math.random() - 0.5) * 44;
+      const startFreq = 490 + jitter;
+      const endFreq = 145 + jitter * 0.25;
+
+      // Primary bubbly drop
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(startFreq, t);
+      osc.frequency.exponentialRampToValueAtTime(Math.max(20, endFreq), t + 0.065);
+
+      gain.gain.setValueAtTime(0.12, t);
+      gain.gain.exponentialRampToValueAtTime(0.001, t + 0.07);
+
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start(t);
+      osc.stop(t + 0.075);
+
+      // Micro transient for physical punch
+      const clickOsc = ctx.createOscillator();
+      const clickGain = ctx.createGain();
+      clickOsc.type = 'triangle';
+      clickOsc.frequency.setValueAtTime(860 + jitter, t);
+      clickOsc.frequency.exponentialRampToValueAtTime(320, t + 0.02);
+
+      clickGain.gain.setValueAtTime(0.05, t);
+      clickGain.gain.exponentialRampToValueAtTime(0.001, t + 0.025);
+
+      clickOsc.connect(clickGain);
+      clickGain.connect(ctx.destination);
+      clickOsc.start(t);
+      clickOsc.stop(t + 0.03);
+    } catch (err) {
+      console.warn('Audio click error:', err);
+    }
+  };
+  window.playRedClickSound = playRedClickSound;
+
+  // 2. 3D Portrait Card Flip & Mode Switch Whoosh + Chime Sound
+  const playFlipSound = (goingDark) => {
+    if (isSoundMuted) return;
+    const ctx = getAudioContext();
+    if (!ctx) return;
+
+    try {
+      const t = ctx.currentTime;
+
+      // Aerodynamic Card Flip Swoosh (White noise through sweeping bandpass filter)
+      const bufferSize = Math.floor(ctx.sampleRate * 0.32);
+      const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+      const data = buffer.getChannelData(0);
+      for (let i = 0; i < bufferSize; i++) {
+        data[i] = Math.random() * 2 - 1;
+      }
+
+      const noise = ctx.createBufferSource();
+      noise.buffer = buffer;
+
+      const filter = ctx.createBiquadFilter();
+      filter.type = 'bandpass';
+      filter.Q.value = 2.4;
+
+      if (goingDark) {
+        filter.frequency.setValueAtTime(300, t);
+        filter.frequency.exponentialRampToValueAtTime(1450, t + 0.12);
+        filter.frequency.exponentialRampToValueAtTime(360, t + 0.3);
+      } else {
+        filter.frequency.setValueAtTime(420, t);
+        filter.frequency.exponentialRampToValueAtTime(1850, t + 0.1);
+        filter.frequency.exponentialRampToValueAtTime(460, t + 0.28);
+      }
+
+      const noiseGain = ctx.createGain();
+      noiseGain.gain.setValueAtTime(0.001, t);
+      noiseGain.gain.linearRampToValueAtTime(0.14, t + 0.07);
+      noiseGain.gain.exponentialRampToValueAtTime(0.001, t + 0.3);
+
+      noise.connect(filter);
+      filter.connect(noiseGain);
+      noiseGain.connect(ctx.destination);
+
+      noise.start(t);
+      noise.stop(t + 0.32);
+
+      // Mode-specific harmonic chime
+      if (goingDark) {
+        // Executive Dark Mode: Cyberpunk cyan holographic harmonics (440Hz -> 554Hz)
+        [440, 880].forEach((freq, i) => {
+          const osc = ctx.createOscillator();
+          const oscGain = ctx.createGain();
+          osc.type = i === 0 ? 'sine' : 'triangle';
+          osc.frequency.setValueAtTime(freq, t + 0.04);
+          osc.frequency.exponentialRampToValueAtTime(freq * 1.25, t + 0.32);
+
+          oscGain.gain.setValueAtTime(0.001, t + 0.04);
+          oscGain.gain.linearRampToValueAtTime(0.07 / (i + 1), t + 0.1);
+          oscGain.gain.exponentialRampToValueAtTime(0.001, t + 0.35);
+
+          osc.connect(oscGain);
+          oscGain.connect(ctx.destination);
+          osc.start(t + 0.04);
+          osc.stop(t + 0.36);
+        });
+      } else {
+        // Creator Mode: Warm acoustic melodic pop triad (523Hz -> 659Hz -> 784Hz)
+        [523.25, 659.25, 783.99].forEach((freq, i) => {
+          const noteTime = t + 0.03 + i * 0.035;
+          const osc = ctx.createOscillator();
+          const oscGain = ctx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(freq, noteTime);
+
+          oscGain.gain.setValueAtTime(0.001, noteTime);
+          oscGain.gain.linearRampToValueAtTime(0.06, noteTime + 0.015);
+          oscGain.gain.exponentialRampToValueAtTime(0.001, noteTime + 0.18);
+
+          osc.connect(oscGain);
+          oscGain.connect(ctx.destination);
+          osc.start(noteTime);
+          osc.stop(noteTime + 0.2);
+        });
+      }
+    } catch (err) {
+      console.warn('Audio flip error:', err);
+    }
+  };
+  window.playFlipSound = playFlipSound;
+
+  // 3. Crisp Interactive Icon / Pill Micro-Tap Sound
+  const playIconTapSound = () => {
+    if (isSoundMuted) return;
+    const ctx = getAudioContext();
+    if (!ctx) return;
+
+    try {
+      const t = ctx.currentTime;
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(880, t);
+      osc.frequency.exponentialRampToValueAtTime(420, t + 0.04);
+
+      gain.gain.setValueAtTime(0.06, t);
+      gain.gain.exponentialRampToValueAtTime(0.001, t + 0.045);
+
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start(t);
+      osc.stop(t + 0.05);
+    } catch (err) {
+      console.warn('Audio tap error:', err);
+    }
+  };
+  window.playIconTapSound = playIconTapSound;
+
+  // 13. Canva "Red Boom" Click Effect (from Visual Media slide)
   const createRedBoom = (x, y) => {
     if (x === undefined || y === undefined) return;
 
@@ -842,7 +1042,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 450);
   };
 
-  // 13. Floating Multiplayer Cursors Reactive Click Reaction
+  // 14. Floating Multiplayer Cursors Reactive Click Reaction & Audio Feedback
   const floatingCursors = document.querySelectorAll('.floating-cursor');
 
   // Listen on pointerdown across the document for instantaneous tactile feedback
@@ -850,7 +1050,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // Only primary button (left click) or touch
     if (e.button !== undefined && e.button !== 0) return;
     if (e.target.isContentEditable || e.target.closest('[contenteditable="true"]')) return;
+
+    // Visual Red Boom burst
     createRedBoom(e.clientX, e.clientY);
+
+    // Audio feedback: play red click pop sound unless clicking flip card or mode button
+    if (!e.target.closest('#portraitFlipCard') && !e.target.closest('#modeToggleBtn') && !e.target.closest('#soundToggleBtn')) {
+      playRedClickSound();
+    }
 
     // Subtle click hop reaction on floating multiplayer cursors
     if (floatingCursors.length > 0) {
@@ -865,17 +1072,31 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  // Interactive pill, channel & button click audio feedback
+  document.addEventListener('click', (e) => {
+    const iconBtn = e.target.closest('.channel-pill, .btn-yt-direct, .btn-reel-external, .btn-branding-link, .btn-claim-voucher-main, .clouted-btn-contact, .btn-swarm-wipe');
+    if (iconBtn && !e.target.closest('#portraitFlipCard') && !e.target.closest('#modeToggleBtn') && !e.target.closest('#soundToggleBtn')) {
+      playIconTapSound();
+    }
+  });
+
   // ==========================================================================
-  // 14. 3D FLIP CARD & GLOW DARK MODE CONTROLLER
+  // 15. 3D FLIP CARD & GLOW DARK MODE CONTROLLER
   // ==========================================================================
   const flipCard = document.getElementById('portraitFlipCard');
   const modeToggleBtn = document.getElementById('modeToggleBtn');
+  const soundToggleBtn = document.getElementById('soundToggleBtn');
 
   // Mode Controller: light or dark
   let isDarkMode = false;
 
   const setPortfolioMode = (dark, animate = true) => {
     isDarkMode = dark;
+
+    // Trigger flip audio effect
+    if (animate) {
+      playFlipSound(isDarkMode);
+    }
 
     // 1. Flip hero portrait card
     if (flipCard) {
@@ -917,7 +1138,39 @@ document.addEventListener('DOMContentLoaded', () => {
   };
   window.setPortfolioMode = setPortfolioMode;
 
-  // Flip card click handler
+  // Sound Toggle Button Handler
+  const updateSoundToggleUI = () => {
+    if (!soundToggleBtn) return;
+    const icon = soundToggleBtn.querySelector('.sound-btn-icon');
+    if (isSoundMuted) {
+      if (icon) icon.textContent = '🔇';
+      soundToggleBtn.classList.add('is-muted');
+      soundToggleBtn.title = 'Sound Effects: OFF (Click to unmute)';
+    } else {
+      if (icon) icon.textContent = '🔊';
+      soundToggleBtn.classList.remove('is-muted');
+      soundToggleBtn.title = 'Sound Effects: ON (Click to mute)';
+    }
+  };
+
+  if (soundToggleBtn) {
+    updateSoundToggleUI();
+    soundToggleBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      isSoundMuted = !isSoundMuted;
+      try {
+        localStorage.setItem('marvin_sound_muted', isSoundMuted ? 'true' : 'false');
+      } catch (e) {
+        console.warn(e);
+      }
+      updateSoundToggleUI();
+      if (!isSoundMuted) {
+        playRedClickSound();
+      }
+    });
+  }
+
+  // Flip card click handler (clicking anywhere on card or flip icon pill)
   if (flipCard) {
     flipCard.addEventListener('click', (e) => {
       e.preventDefault();
