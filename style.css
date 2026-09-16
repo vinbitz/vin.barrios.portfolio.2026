@@ -3750,8 +3750,8 @@ body.dark-mode .as-seen-on-section {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  height: 60px;
-  padding: 6px 22px;
+  height: 62px;
+  padding: 8px 24px;
   background: #FFFFFF;
   border: 1.5px solid #E2E8F0;
   border-radius: 14px;
@@ -3769,27 +3769,26 @@ body.dark-mode .as-seen-on-section {
 }
 
 .ticker-logo-img {
-  max-height: 44px;
+  max-height: 42px;
   width: auto;
-  max-width: 165px;
+  max-width: 160px;
   object-fit: contain;
   display: block;
 }
 
 .ticker-logo-img.logo-img-square {
-  max-height: 52px;
-  transform: scale(1.18);
+  max-height: 42px;
 }
 
 body.dark-mode .ticker-logo-card {
-  background: #11141F;
-  border-color: rgba(255, 255, 255, 0.12);
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
+  background: #FFFFFF !important;
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.45);
 }
 
 body.dark-mode .ticker-logo-card:hover {
   border-color: #8C52FF;
-  box-shadow: 0 0 20px rgba(140, 82, 255, 0.35);
+  box-shadow: 0 0 20px rgba(140, 82, 255, 0.45);
 }
 
 .ticker-logo-text {
